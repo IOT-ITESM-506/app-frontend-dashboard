@@ -2,19 +2,7 @@ import { useRef, useState } from 'react';
 
 import { NavLink } from 'react-router-dom';
 
-import {
-    Avatar,
-    Box,
-    Button,
-    Divider,
-    Hidden,
-    lighten,
-    List,
-    ListItem,
-    ListItemText,
-    Popover,
-    Typography
-} from '@mui/material';
+import { Avatar, Box, Button, Divider, Hidden, lighten, List, ListItem, ListItemText, Popover, Typography } from '@mui/material';
 
 import InboxTwoToneIcon from '@mui/icons-material/InboxTwoTone';
 import { styled } from '@mui/material/styles';
@@ -60,7 +48,7 @@ const UserBoxDescription = styled(Typography)(
 
 function HeaderUserbox() {
     const user = {
-        name: 'Catherine Pike',
+        name: 'Adrian Stefan',
         avatar: '/static/images/avatars/1.jpg',
         jobtitle: 'Project Manager'
     };
