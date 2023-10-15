@@ -68,7 +68,7 @@ function Header() {
                 alignItems="center"
                 spacing={2}
             >
-                <HeaderMenu />
+                <HeaderMenu /> {/* <--- This is the menu button */}
             </Stack>
             <Box display="flex" alignItems="center">
                 <HeaderButtons />

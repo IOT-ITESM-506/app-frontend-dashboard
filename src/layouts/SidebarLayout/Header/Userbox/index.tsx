@@ -49,7 +49,7 @@ const UserBoxDescription = styled(Typography)(
 function HeaderUserbox() {
     const user = {
         name: 'Adrian Stefan',
-        avatar: '/static/images/avatars/1.jpg',
+        avatar: '/static/images/avatars/avatar.png',
         jobtitle: 'Project Manager'
     };
 

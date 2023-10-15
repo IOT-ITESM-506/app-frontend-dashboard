@@ -4,7 +4,7 @@ import { useTheme } from '@mui/material/styles';
 function PageHeader() {
     const user = {
         name: 'Adrian Stefan',
-        avatar: '/static/images/avatars/1.jpg'
+        avatar: '/static/images/avatars/avatar.png'
     };
     const theme = useTheme();
 
