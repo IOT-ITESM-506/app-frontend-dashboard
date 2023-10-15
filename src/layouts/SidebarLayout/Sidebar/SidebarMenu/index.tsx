@@ -195,10 +195,10 @@ function SidebarMenu() {
                                     disableRipple
                                     component={RouterLink}
                                     onClick={closeSidebar}
-                                    to="/dashboards/crypto"
+                                    to="/dashboard/home"
                                     startIcon={<BrightnessLowTwoToneIcon />}
                                 >
-                                    Cryptocurrency
+                                    Home
                                 </Button>
                             </ListItem>
                             <ListItem component="div">
@@ -206,34 +206,10 @@ function SidebarMenu() {
                                     disableRipple
                                     component={RouterLink}
                                     onClick={closeSidebar}
-                                    to="/dashboards/messenger"
+                                    to="/dashboard/notifications"
                                     startIcon={<MmsTwoToneIcon />}
                                 >
-                                    Messenger
-                                </Button>
-                            </ListItem>
-                        </List>
-                    </SubMenuWrapper>
-                </List>
-                <List
-                    component="div"
-                    subheader={
-                        <ListSubheader component="div" disableSticky>
-                            Management
-                        </ListSubheader>
-                    }
-                >
-                    <SubMenuWrapper>
-                        <List component="div">
-                            <ListItem component="div">
-                                <Button
-                                    disableRipple
-                                    component={RouterLink}
-                                    onClick={closeSidebar}
-                                    to="/management/transactions"
-                                    startIcon={<TableChartTwoToneIcon />}
-                                >
-                                    Transactions List
+                                    Notifications
                                 </Button>
                             </ListItem>
                         </List>
@@ -278,7 +254,7 @@ function SidebarMenu() {
                     component="div"
                     subheader={
                         <ListSubheader component="div" disableSticky>
-                            Components
+                            Greenhouses & Sensors
                         </ListSubheader>
                     }
                 >
@@ -289,155 +265,10 @@ function SidebarMenu() {
                                     disableRipple
                                     component={RouterLink}
                                     onClick={closeSidebar}
-                                    to="/components/buttons"
-                                    startIcon={<BallotTwoToneIcon />}
+                                    to="/greenhouses/news"
+                                    startIcon={<DesignServicesTwoToneIcon />}
                                 >
-                                    Buttons
-                                </Button>
-                            </ListItem>
-                            <ListItem component="div">
-                                <Button
-                                    disableRipple
-                                    component={RouterLink}
-                                    onClick={closeSidebar}
-                                    to="/components/modals"
-                                    startIcon={<BeachAccessTwoToneIcon />}
-                                >
-                                    Modals
-                                </Button>
-                            </ListItem>
-                            <ListItem component="div">
-                                <Button
-                                    disableRipple
-                                    component={RouterLink}
-                                    onClick={closeSidebar}
-                                    to="/components/accordions"
-                                    startIcon={<EmojiEventsTwoToneIcon />}
-                                >
-                                    Accordions
-                                </Button>
-                            </ListItem>
-                            <ListItem component="div">
-                                <Button
-                                    disableRipple
-                                    component={RouterLink}
-                                    onClick={closeSidebar}
-                                    to="/components/tabs"
-                                    startIcon={<FilterVintageTwoToneIcon />}
-                                >
-                                    Tabs
-                                </Button>
-                            </ListItem>
-                            <ListItem component="div">
-                                <Button
-                                    disableRipple
-                                    component={RouterLink}
-                                    onClick={closeSidebar}
-                                    to="/components/badges"
-                                    startIcon={<HowToVoteTwoToneIcon />}
-                                >
-                                    Badges
-                                </Button>
-                            </ListItem>
-                            <ListItem component="div">
-                                <Button
-                                    disableRipple
-                                    component={RouterLink}
-                                    onClick={closeSidebar}
-                                    to="/components/tooltips"
-                                    startIcon={<LocalPharmacyTwoToneIcon />}
-                                >
-                                    Tooltips
-                                </Button>
-                            </ListItem>
-                            <ListItem component="div">
-                                <Button
-                                    disableRipple
-                                    component={RouterLink}
-                                    onClick={closeSidebar}
-                                    to="/components/avatars"
-                                    startIcon={<RedeemTwoToneIcon />}
-                                >
-                                    Avatars
-                                </Button>
-                            </ListItem>
-                            <ListItem component="div">
-                                <Button
-                                    disableRipple
-                                    component={RouterLink}
-                                    onClick={closeSidebar}
-                                    to="/components/cards"
-                                    startIcon={<SettingsTwoToneIcon />}
-                                >
-                                    Cards
-                                </Button>
-                            </ListItem>
-                            <ListItem component="div">
-                                <Button
-                                    disableRipple
-                                    component={RouterLink}
-                                    onClick={closeSidebar}
-                                    to="/components/forms"
-                                    startIcon={<TrafficTwoToneIcon />}
-                                >
-                                    Forms
-                                </Button>
-                            </ListItem>
-                        </List>
-                    </SubMenuWrapper>
-                </List>
-                <List
-                    component="div"
-                    subheader={
-                        <ListSubheader component="div" disableSticky>
-                            Extra Pages
-                        </ListSubheader>
-                    }
-                >
-                    <SubMenuWrapper>
-                        <List component="div">
-                            <ListItem component="div">
-                                <Button
-                                    disableRipple
-                                    component={RouterLink}
-                                    onClick={closeSidebar}
-                                    to="/status/404"
-                                    startIcon={<CheckBoxTwoToneIcon />}
-                                >
-                                    Error 404
-                                </Button>
-                            </ListItem>
-                            <ListItem component="div">
-                                <Button
-                                    disableRipple
-                                    component={RouterLink}
-                                    onClick={closeSidebar}
-                                    to="/status/500"
-                                    startIcon={<CameraFrontTwoToneIcon />}
-                                >
-                                    Error 500
-                                </Button>
-                            </ListItem>
-                            <ListItem component="div">
-                                <Button
-                                    disableRipple
-                                    component={RouterLink}
-                                    onClick={closeSidebar}
-                                    to="/status/coming-soon"
-                                    startIcon={<ChromeReaderModeTwoToneIcon />}
-                                >
-                                    Coming Soon
-                                </Button>
-                            </ListItem>
-                            <ListItem component="div">
-                                <Button
-                                    disableRipple
-                                    component={RouterLink}
-                                    onClick={closeSidebar}
-                                    to="/status/maintenance"
-                                    startIcon={<WorkspacePremiumTwoToneIcon />}
-                                >
-                                    Maintenance
+                                    Greenhouses News
                                 </Button>
                             </ListItem>
                         </List>

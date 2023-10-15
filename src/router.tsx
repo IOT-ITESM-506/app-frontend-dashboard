@@ -115,7 +115,7 @@ const routes: RouteObject[] = [
         ]
     },
     {
-        path: 'dashboards',
+        path: 'dashboard',
         element: <SidebarLayout />,
         children: [
             {
@@ -123,11 +123,11 @@ const routes: RouteObject[] = [
                 element: <Navigate to="crypto" replace />
             },
             {
-                path: 'crypto',
+                path: 'home',
                 element: <Crypto />
             },
             {
-                path: 'messenger',
+                path: 'notifications',
                 element: <Messenger />
             }
         ]
@@ -164,7 +164,7 @@ const routes: RouteObject[] = [
         ]
     },
     {
-        path: '/components',
+        path: '/greenhouses',
         element: <SidebarLayout />,
         children: [
             {
@@ -200,7 +200,7 @@ const routes: RouteObject[] = [
                 element: <Avatars />
             },
             {
-                path: 'cards',
+                path: 'news',
                 element: <Cards />
             },
             {

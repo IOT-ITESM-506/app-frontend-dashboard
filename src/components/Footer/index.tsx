@@ -21,21 +21,7 @@ function Footer() {
                         &copy; 2023 - IoT Dashboard App
                     </Typography>
                 </Box>
-                <Typography
-                    sx={{
-                        pt: { xs: 2, md: 0 }
-                    }}
-                    variant="subtitle1"
-                >
-                    Crafted by{' '}
-                    <Link
-                        href="https://bloomui.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        BloomUI.com
-                    </Link>
-                </Typography>
+                
             </Box>
         </FooterWrapper>
     );
