@@ -81,6 +81,10 @@ const SignUp = Loader(
     lazy(() => import('src/content/auth/Signup/Signup'))
 )
 
+const SignInForm = Loader(
+    lazy(() => import('src/content/auth/Signin/SignIn'))
+)
+
 const routes: RouteObject[] = [
     {
         path: '',
@@ -223,6 +227,10 @@ const routes: RouteObject[] = [
             {
                 path: 'signup',
                 element: <SignUp />
+            },
+            {
+                path: 'signin',
+                element: <SignInForm />
             }
         ]
     }
