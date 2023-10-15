@@ -74,6 +74,13 @@ const StatusMaintenance = Loader(
     lazy(() => import('src/content/pages/Status/Maintenance'))
 );
 
+
+// Authentication
+
+const SignUp = Loader(
+    lazy(() => import('src/content/auth/Signup/Signup'))
+)
+
 const routes: RouteObject[] = [
     {
         path: '',
@@ -206,6 +213,16 @@ const routes: RouteObject[] = [
             {
                 path: 'forms',
                 element: <Forms />
+            }
+        ]
+    },
+    {
+        path: '/auth',
+        element: <BaseLayout />,
+        children: [
+            {
+                path: 'signup',
+                element: <SignUp />
             }
         ]
     }
