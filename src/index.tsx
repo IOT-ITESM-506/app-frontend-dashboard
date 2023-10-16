@@ -8,14 +8,17 @@ import { SidebarProvider } from 'src/contexts/SidebarContext';
 import * as serviceWorker from 'src/serviceWorker';
 
 import './index.css'
+import { AuthProvider } from 'src/contexts/AuthContext';
 
 ReactDOM.render(
     <HelmetProvider>
-        <SidebarProvider>
-            <BrowserRouter>
-                <App />
-            </BrowserRouter>
-        </SidebarProvider>
+        <AuthProvider>
+            <SidebarProvider>
+                <BrowserRouter>
+                    <App />
+                </BrowserRouter>
+            </SidebarProvider>
+        </AuthProvider>
     </HelmetProvider>,
     document.getElementById('root')
 );

@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { NavLink } from 'react-router-dom';
 
@@ -47,6 +48,7 @@ const UserBoxDescription = styled(Typography)(
 );
 
 function HeaderUserbox() {
+    const navigate = useNavigate();
     const user = {
         name: 'Adrian Stefan',
         avatar: '/static/images/avatars/avatar.png',
@@ -122,7 +124,7 @@ function HeaderUserbox() {
                     </ListItem>
                 </List>
                 <Divider />
-                <Box sx={{ m: 1 }}>
+                <Box sx={{ m: 1 }} onClick ={() => navigate('/auth/signin/')}>
                     <Button color="primary" fullWidth>
                         <LockOpenTwoToneIcon sx={{ mr: 1 }} />
                         Sign out
