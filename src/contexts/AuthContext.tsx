@@ -39,7 +39,7 @@ export function AuthProvider(props: AuthProviderProps) {
         onLogout: () => {
             setAuthTokens(null);
             localStorage.removeItem('authTokens');
-            window.location.href = '/signin/identify'
+            window.location.href = '/auth/signin/'
         },
         updateToken: async () => {
             try {
@@ -71,13 +71,6 @@ export function AuthProvider(props: AuthProviderProps) {
                         "password": data.password,
                     }),
                 });
-
-                console.log(JSON.stringify({
-                    "fist_name": data.first_name,
-                    "last_name": data.last_name,
-                    "email": data.email,
-                    "password": data.password,
-                }))
 
                 if (!response.ok) {
                     throw new Error("Network response was not ok");

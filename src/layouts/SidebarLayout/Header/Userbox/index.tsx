@@ -127,7 +127,7 @@ function HeaderUserbox() {
                     </ListItem>
                 </List>
                 <Divider />
-                <Box sx={{ m: 1 }} onClick ={() => navigate('/auth/signin/')}>
+                <Box sx={{ m: 1 }} onClick ={() => authContext.onLogout()}>
                     <Button color="primary" fullWidth>
                         <LockOpenTwoToneIcon sx={{ mr: 1 }} />
                         Sign out

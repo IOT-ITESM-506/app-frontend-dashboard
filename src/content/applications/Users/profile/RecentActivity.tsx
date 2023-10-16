@@ -34,7 +34,7 @@ function RecentActivity() {
                     <ShoppingBagTwoToneIcon />
                 </AvatarPrimary>
                 <Box pl={2} flex={1}>
-                    <Typography variant="h4">Orders</Typography>
+                    <Typography variant="h4">Alerts</Typography>
 
                     <Box pt={1} display="flex">
                         <Box pr={8}>
@@ -66,8 +66,7 @@ function RecentActivity() {
                     <FavoriteTwoToneIcon />
                 </AvatarPrimary>
                 <Box pl={2} flex={1}>
-                    <Typography variant="h4">Favourites</Typography>
-
+                    <Typography variant="h4">Actuators</Typography>
                     <Box pt={1} display="flex">
                         <Box pr={8}>
                             <Typography
@@ -98,7 +97,7 @@ function RecentActivity() {
                     <StarTwoToneIcon />
                 </AvatarPrimary>
                 <Box pl={2} flex={1}>
-                    <Typography variant="h4">Reviews</Typography>
+                    <Typography variant="h4">Sensor Records</Typography>
 
                     <Box pt={1} display="flex">
                         <Box pr={8}>
