@@ -1,9 +1,14 @@
+import { useContext } from 'react';
 import { Typography, Avatar, Grid } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
+import { AuthContext } from 'src/contexts/AuthContext';
+
 function PageHeader() {
+    const authContext = useContext(AuthContext);
+
     const user = {
-        name: 'Adrian Stefan',
+        name: authContext.user?.first_name + ' ' + authContext.user?.last_name,
         avatar: '/static/images/avatars/avatar.png'
     };
     const theme = useTheme();

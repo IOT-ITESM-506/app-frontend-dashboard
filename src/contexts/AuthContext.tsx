@@ -29,7 +29,7 @@ export function AuthProvider(props: AuthProviderProps) {
                     setAuthTokens(data)
                     const jwt_decode_data: any = jwtDecode(data.access)
                     localStorage.setItem('authTokens', JSON.stringify(data))
-                    window.location.href = '/dashboard/home/' + jwt_decode_data.user_id
+                    window.location.href = '/dashboard/home/'
                 }
                 return response;
             } catch (err) {
@@ -114,18 +114,18 @@ export function AuthProvider(props: AuthProviderProps) {
         authContext.updateToken();
     };
 
-    // useEffect(() => {
-    //     if (authTokens) {
-    //         authContext.getUserData();
-    //         authContext.updateToken();
+    useEffect(() => {
+        if (authTokens) {
+            authContext.getUserData();
+            authContext.updateToken();
 
-    //         const interval = setInterval(renewToken, 240000);
+            const interval = setInterval(renewToken, 240000);
 
-    //         return () => {
-    //             clearInterval(interval);
-    //         };
-    //     }
-    // }, []);
+            return () => {
+                clearInterval(interval);
+            };
+        }
+    }, []);
 
     return (
         <AuthContext.Provider value={authContext}>

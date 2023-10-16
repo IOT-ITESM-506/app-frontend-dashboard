@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { NavLink } from 'react-router-dom';
@@ -11,6 +11,8 @@ import ExpandMoreTwoToneIcon from '@mui/icons-material/ExpandMoreTwoTone';
 import AccountBoxTwoToneIcon from '@mui/icons-material/AccountBoxTwoTone';
 import LockOpenTwoToneIcon from '@mui/icons-material/LockOpenTwoTone';
 import AccountTreeTwoToneIcon from '@mui/icons-material/AccountTreeTwoTone';
+
+import { AuthContext } from 'src/contexts/AuthContext';
 
 const UserBoxButton = styled(Button)(
     ({ theme }) => `
@@ -48,9 +50,10 @@ const UserBoxDescription = styled(Typography)(
 );
 
 function HeaderUserbox() {
+    const authContext = useContext(AuthContext);
     const navigate = useNavigate();
     const user = {
-        name: 'Adrian Stefan',
+        name: authContext.user?.first_name,
         avatar: '/static/images/avatars/avatar.png',
         jobtitle: 'Project Manager'
     };

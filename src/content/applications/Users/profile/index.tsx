@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import Footer from 'src/components/Footer';
 
+import { useContext } from 'react';
 import { Grid, Container } from '@mui/material';
 
 import ProfileCover from './ProfileCover';
@@ -9,11 +10,14 @@ import Feed from './Feed';
 import PopularTags from './PopularTags';
 import MyCards from './MyCards';
 import Addresses from './Addresses';
+import { AuthContext } from 'src/contexts/AuthContext';
+
 
 function ManagementUserProfile() {
+    const authContext = useContext(AuthContext)
     const user = {
         savedCards: 7,
-        name: 'Catherine Pike',
+        name: authContext.user?.first_name + ' ' + authContext.user?.last_name,
         coverImg: 'https://images.pexels.com/photos/2749165/pexels-photo-2749165.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
         avatar: '/static/images/avatars/avatar.png',
         description:
