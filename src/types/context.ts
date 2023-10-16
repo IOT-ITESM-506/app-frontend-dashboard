@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode } from "react";
 
 interface AuthTokens {
     access: string;
@@ -6,13 +6,16 @@ interface AuthTokens {
 }
 
 interface AuthContextType {
-    registerUser: (name: string, email: string,) => void;
     onLogin: (email: string, password: string) => void;
-    updateToken: (refreshToken: string) => void;
     onLogout: () => void;
-    getUserData: (token: string) => void;
+    updateToken: () => void;
+    getUserData: () => void;
+    registerUser: (data: any) => void;
     authTokens?: AuthTokens;
     user?: any;
+
+    navbarIsActive: boolean;
+    setNavbarIsActive: (value: boolean) => void;
 }
 
 interface AuthProviderProps {

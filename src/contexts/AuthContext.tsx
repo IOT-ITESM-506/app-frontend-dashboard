@@ -1,9 +1,9 @@
-import { createContext, useEffect, useState } from "react";
-
-import { AuthContextType, AuthProviderProps, AuthTokens } from "src/types/context";
-import apiService from "src/services/UserHandler.service";
+import { createContext, useEffect, useReducer, ReactNode, useState } from "react";
+import { BACKEND_URL } from "src/config/env";
 
 import jwtDecode from "jwt-decode";
+
+import { AuthContextType, AuthProviderProps, AuthTokens } from "src/types/context";
 
 export const AuthContext = createContext<AuthContextType | null>(null);
 
@@ -12,36 +12,114 @@ export function AuthProvider(props: AuthProviderProps) {
         localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens') as string) : null
     )
     const [user, setUser] = useState()
+    const [navbarIsActive, setNavbarIsActive] = useState<boolean>(false)
 
     const authContext: AuthContextType = {
-        registerUser: async(data: any) => {
-            const response = await apiService.registerUser(data);
-            return response;
-        },
-        onLogin: async(email: string, password: string) => {
-            const response = await apiService.loginUser(email, password);
-            if (response) {
-                setAuthTokens(response);
-                localStorage.setItem('authTokens', JSON.stringify(response));
+        onLogin: async (email: string, password: string) => {
+            try {
+                let response = await fetch(BACKEND_URL + '/api/token/tokens/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ 'email': email, 'password': password })
+                })
+                let data = await response.json();
+                if (response.status === 200) {
+                    setAuthTokens(data)
+                    const jwt_decode_data: any = jwtDecode(data.access)
+                    localStorage.setItem('authTokens', JSON.stringify(data))
+                    window.location.href = '/app/home/' + jwt_decode_data.user_id
+                }
+                return response;
+            } catch (err) {
+                throw new Error(`Error! status: ${err}`);
             }
-            return response;
         },
-        updateToken: async(refreshToken: string) => {
-            const response = await apiService.updateToken(refreshToken);
-            if (response) {
-                setAuthTokens(response);
-                localStorage.setItem('authTokens', JSON.stringify(response));
+        onLogout: () => {
+            setAuthTokens(null);
+            localStorage.removeItem('authTokens');
+            window.location.href = '/signin/identify'
+        },
+        updateToken: async () => {
+            try {
+                let response = await fetch(BACKEND_URL + '/api/token/tokens/refresh/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ 'refresh': authTokens.refresh })
+                })
+                let data = await response.json();
+                setAuthTokens(data);
+                localStorage.setItem('authTokens', JSON.stringify(data))
+            } catch (err) {
+                throw new Error(`Error! status: ${err}`);
             }
-            return response;
         },
-        onLogout: () => apiService.onLogOut(),
-        getUserData: async(token: string) => {
-            const response = await apiService.getUserData(token);
-            return response;
+        registerUser: async (data: any) => {
+            console.log(data)
+            try {
+                const response = await fetch(`${BACKEND_URL}/api/user/create/`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        "fist_name": data.first_name,
+                        "last_name": data.last_name,
+                        "email": data.email,
+                        "password": data.password,
+                    }),
+                });
+
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                return response;
+            } catch (error) {
+                throw new Error(`Error! status: ${error}`);
+            }
+        },
+        getUserData: async () => {
+            try {
+                const response = await fetch(`${BACKEND_URL}/api/user/me/`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${authTokens.access}`,
+                    },
+                });
+                if (!response.ok) {
+                    throw new Error(`Error! status: ${response.status}`);
+                }
+                const result = await response.json();
+                setUser(result);
+            } catch (err) {
+                throw new Error(`Error! status: ${err}`);
+            }
         },
         authTokens,
-        user
+        user,
+        navbarIsActive, setNavbarIsActive,
     };
+
+    const renewToken = () => {
+        authContext.updateToken();
+    };
+
+    // useEffect(() => {
+    //     if (authTokens) {
+    //         authContext.getUserData();
+    //         authContext.updateToken();
+
+    //         const interval = setInterval(renewToken, 240000);
+
+    //         return () => {
+    //             clearInterval(interval);
+    //         };
+    //     }
+    // }, []);
 
     return (
         <AuthContext.Provider value={authContext}>

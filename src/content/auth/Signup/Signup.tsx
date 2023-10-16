@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
@@ -9,24 +10,14 @@ import Checkbox from '@mui/material/Checkbox';
 import GoogleIcon from '@mui/icons-material/Google';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
-
 import { IconButton } from '@mui/material';
 
-interface FormData {
-    email: string;
-    first_name: string;
-    last_name: string;
-    password: string;
-}
-
-interface FormErrors {
-    email?: string;
-    first_name?: string;
-    last_name?: string;
-    password?: string;
-}
+import { FormErrors, FormData } from 'src/types/Signup';
+import { AuthContext } from 'src/contexts/AuthContext';
 
 const SignupForm: React.FC = () => {
+    const authContext = useContext(AuthContext);
+
     const [formData, setFormData] = useState<FormData>({
         email: '',
         first_name: '',
@@ -50,7 +41,7 @@ const SignupForm: React.FC = () => {
         });
     };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         const errors: FormErrors = {};
@@ -70,12 +61,11 @@ const SignupForm: React.FC = () => {
         } else if (formData.password.length < 8) {
             errors.password = 'Password must be at least 8 characters long';
         }
-
         if (Object.keys(errors).length > 0) {
             setFormErrors(errors);
         } else {
             setSuccessMessage('Registration successful!');
-            console.log('Form Data:', formData);
+            const response = await authContext.registerUser(formData);
         }
     };
 
@@ -94,7 +84,7 @@ const SignupForm: React.FC = () => {
                 <Grid item xs={12} md={6}>
                     <Box sx={{ display: 'flex', flexDirection: 'column', width: '300px', margin: 'auto', textAlign: 'center' }}>
                         <h1 style={{ marginBottom: '16px', fontSize: '22px' }}>Signup</h1>
-                        {successMessage && <Alert severity="success">{successMessage}</Alert>}
+                        
                         <TextField
                             label="Email"
                             variant="outlined"
@@ -137,6 +127,7 @@ const SignupForm: React.FC = () => {
                             error={!!formErrors.password}
                             helperText={formErrors.password}
                         />
+                        {successMessage && <Alert severity="success">{successMessage}</Alert>}
                         <FormControlLabel
                             control={<Checkbox checked={rememberSession} onChange={() => setRememberSession(!rememberSession)} />}
                             label="Remember Session"
