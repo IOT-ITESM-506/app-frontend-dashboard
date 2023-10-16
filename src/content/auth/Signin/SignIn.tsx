@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
@@ -11,17 +11,11 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import { IconButton } from '@mui/material';
 
-interface FormData {
-    email: string;
-    password: string;
-}
-
-interface FormErrors {
-    email?: string;
-    password?: string;
-}
+import { FormData, FormErrors } from 'src/types/SignIn';
+import { AuthContext } from 'src/contexts/AuthContext';
 
 const SignInForm: React.FC = () => {
+    const authContext = useContext(AuthContext);
     const [formData, setFormData] = useState<FormData>({
         email: '',
         password: '',
@@ -36,14 +30,14 @@ const SignInForm: React.FC = () => {
             ...formData,
             [e.target.name]: e.target.value,
         });
-
+        
         setFormErrors({
             ...formErrors,
             [e.target.name]: '',
         });
     };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         const errors: FormErrors = {};
@@ -57,12 +51,11 @@ const SignInForm: React.FC = () => {
         } else if (formData.password.length < 8) {
             errors.password = 'Password must be at least 8 characters long';
         }
-
         if (Object.keys(errors).length > 0) {
             setFormErrors(errors);
         } else {
             setSuccessMessage('Sign In successful!');
-            console.log('Form Data:', formData);
+            const response = await authContext.onLogin(formData.email, formData.password);
         }
     };
 

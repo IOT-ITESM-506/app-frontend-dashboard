@@ -10,9 +10,9 @@ export const AuthContext = createContext<AuthContextType | null>(null);
 export function AuthProvider(props: AuthProviderProps) {
     const [authTokens, setAuthTokens] = useState(
         localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens') as string) : null
-    )
-    const [user, setUser] = useState()
-    const [navbarIsActive, setNavbarIsActive] = useState<boolean>(false)
+    );
+    const [user, setUser] = useState();
+    const [navbarIsActive, setNavbarIsActive] = useState<boolean>(false);
 
     const authContext: AuthContextType = {
         onLogin: async (email: string, password: string) => {
@@ -29,7 +29,7 @@ export function AuthProvider(props: AuthProviderProps) {
                     setAuthTokens(data)
                     const jwt_decode_data: any = jwtDecode(data.access)
                     localStorage.setItem('authTokens', JSON.stringify(data))
-                    window.location.href = '/app/home/' + jwt_decode_data.user_id
+                    window.location.href = '/dashboard/home/' + jwt_decode_data.user_id
                 }
                 return response;
             } catch (err) {
@@ -58,7 +58,6 @@ export function AuthProvider(props: AuthProviderProps) {
             }
         },
         registerUser: async (data: any) => {
-            console.log(data)
             try {
                 const response = await fetch(`${BACKEND_URL}/api/user/create/`, {
                     method: "POST",
@@ -66,12 +65,19 @@ export function AuthProvider(props: AuthProviderProps) {
                         "Content-Type": "application/json",
                     },
                     body: JSON.stringify({
-                        "fist_name": data.first_name,
+                        "first_name": data.first_name,
                         "last_name": data.last_name,
                         "email": data.email,
                         "password": data.password,
                     }),
                 });
+
+                console.log(JSON.stringify({
+                    "fist_name": data.first_name,
+                    "last_name": data.last_name,
+                    "email": data.email,
+                    "password": data.password,
+                }))
 
                 if (!response.ok) {
                     throw new Error("Network response was not ok");
