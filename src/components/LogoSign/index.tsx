@@ -102,7 +102,7 @@ function Logo() {
             title="IoT Dashboard App"
             arrow
         >
-            <LogoWrapper to="/overview">
+            <LogoWrapper to="/dashboard/home">
                 <Badge
                     sx={{
                         '.MuiBadge-badge': {
