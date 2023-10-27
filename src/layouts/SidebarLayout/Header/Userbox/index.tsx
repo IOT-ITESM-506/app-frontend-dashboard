@@ -6,6 +6,8 @@ import { NavLink } from 'react-router-dom';
 import { Avatar, Box, Button, Divider, Hidden, lighten, List, ListItem, ListItemText, Popover, Typography } from '@mui/material';
 
 import InboxTwoToneIcon from '@mui/icons-material/InboxTwoTone';
+import AddIcon from '@mui/icons-material/Add';
+
 import { styled } from '@mui/material/styles';
 import ExpandMoreTwoToneIcon from '@mui/icons-material/ExpandMoreTwoTone';
 import AccountBoxTwoToneIcon from '@mui/icons-material/AccountBoxTwoTone';
@@ -13,6 +15,7 @@ import LockOpenTwoToneIcon from '@mui/icons-material/LockOpenTwoTone';
 import AccountTreeTwoToneIcon from '@mui/icons-material/AccountTreeTwoTone';
 
 import { AuthContext } from 'src/contexts/AuthContext';
+import AddGreenhouseModal from 'src/layouts/SidebarLayout/Header/AddGreenhouseModal/AddGreenhouseModal';
 
 const UserBoxButton = styled(Button)(
     ({ theme }) => `
@@ -50,24 +53,22 @@ const UserBoxDescription = styled(Typography)(
 );
 
 function HeaderUserbox() {
+    const ref = useRef<any>(null);
     const authContext = useContext(AuthContext);
-    const navigate = useNavigate();
     const user = {
         name: authContext.user?.first_name,
-        avatar: '/static/images/avatars/avatar.png',
+        avatar: 'https://images.pexels.com/photos/1067333/pexels-photo-1067333.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
         jobtitle: 'Project Manager'
     };
 
-    const ref = useRef<any>(null);
     const [isOpen, setOpen] = useState<boolean>(false);
+    const handleOpen = (): void => setOpen(true);
+    const handleClose = (): void => setOpen(false);
 
-    const handleOpen = (): void => {
-        setOpen(true);
-    };
+    const [openRegisterGreenhouse, setOpenRegisterGreenhouse] = useState<boolean>(false);
+    const handleOpenRegisterGreenhouse = (): void => setOpenRegisterGreenhouse(true);
+    const handleCloseRegisterGreenhouse = (): void => setOpenRegisterGreenhouse(false);
 
-    const handleClose = (): void => {
-        setOpen(false);
-    };
 
     return (
         <>
@@ -125,9 +126,21 @@ function HeaderUserbox() {
                         <AccountTreeTwoToneIcon fontSize="small" />
                         <ListItemText primary="Account Settings" />
                     </ListItem>
+                    <Button
+                        color="primary"
+                        fullWidth
+                        onClick={handleOpenRegisterGreenhouse}
+                    >
+                        <AddIcon fontSize="small" />
+                        <ListItemText primary="Register greenhouse" />
+                    </Button>
+                    <AddGreenhouseModal
+                        open={openRegisterGreenhouse}
+                        handleClose={handleCloseRegisterGreenhouse}
+                    />
                 </List>
                 <Divider />
-                <Box sx={{ m: 1 }} onClick ={() => authContext.onLogout()}>
+                <Box sx={{ m: 1 }} onClick={() => authContext.onLogout()}>
                     <Button color="primary" fullWidth>
                         <LockOpenTwoToneIcon sx={{ mr: 1 }} />
                         Sign out

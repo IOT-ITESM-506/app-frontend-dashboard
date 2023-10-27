@@ -283,7 +283,7 @@ function SidebarContent() {
                         </ListItemWrapper>
                         <ListItemWrapper>
                             <ListItemAvatar>
-                                <Avatar src="/static/images/avatars/avatar.png" />
+                                <Avatar src="https://images.pexels.com/photos/1067333/pexels-photo-1067333.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" />
                             </ListItemAvatar>
                             <ListItemText
                                 sx={{
@@ -335,7 +335,7 @@ function SidebarContent() {
                         </ListItemWrapper>
                         <ListItemWrapper>
                             <ListItemAvatar>
-                                <Avatar src="/static/images/avatars/avatar.png" />
+                                <Avatar src="https://images.pexels.com/photos/1067333/pexels-photo-1067333.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" />
                             </ListItemAvatar>
                             <ListItemText
                                 sx={{
@@ -500,7 +500,7 @@ function SidebarContent() {
                                 component={RouterLink}
                                 to="#"
                                 alt="Travis Howard"
-                                src="/static/images/avatars/avatar.png"
+                                src="https://images.pexels.com/photos/1067333/pexels-photo-1067333.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                             />
                         </Tooltip>
                         <Tooltip arrow title="View profile for Craig Vaccaro">

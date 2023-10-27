@@ -1,8 +1,9 @@
 import { useContext } from 'react';
-import { Typography, Avatar, Grid } from '@mui/material';
+import { Typography, Avatar, Grid, Button } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
 import { AuthContext } from 'src/contexts/AuthContext';
+import AddGreenhouseModal from 'src/layouts/SidebarLayout/Header/AddGreenhouseModal/AddGreenhouseModal';
 
 function PageHeader() {
     const authContext = useContext(AuthContext);
@@ -32,7 +33,7 @@ function PageHeader() {
                     Welcome, {user.name}!
                 </Typography>
                 <Typography variant="subtitle2">
-                    Today is a good day to start trading crypto assets!
+                    Today is a great day to begin managing your assets in the digital greenhouse.
                 </Typography>
             </Grid>
         </Grid>

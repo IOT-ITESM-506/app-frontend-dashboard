@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import {
     Box,
     CardMedia,
@@ -18,6 +19,7 @@ import ThumbUpAltTwoToneIcon from '@mui/icons-material/ThumbUpAltTwoTone';
 import CommentTwoToneIcon from '@mui/icons-material/CommentTwoTone';
 import ShareTwoToneIcon from '@mui/icons-material/ShareTwoTone';
 import Text from 'src/components/Text';
+import { AuthContext } from 'src/contexts/AuthContext';
 
 const CardActionsWrapper = styled(CardActions)(
     ({ theme }) => `
@@ -27,6 +29,10 @@ const CardActionsWrapper = styled(CardActions)(
 );
 
 function ActivityTab() {
+    const { user } = useContext(AuthContext);
+
+    console.log(user);
+
     return (
         <Card>
             <CardHeader
@@ -38,7 +44,7 @@ function ActivityTab() {
                 }
                 titleTypographyProps={{ variant: 'h4' }}
                 subheaderTypographyProps={{ variant: 'subtitle2' }}
-                title="Allison Lipshutz"
+                title={user?.first_name + ' ' + user?.last_name}
                 subheader={
                     <>
                         Managing Partner,{' '}
@@ -55,17 +61,17 @@ function ActivityTab() {
             />
             <Box px={3} pb={2}>
                 <Typography variant="h4" fontWeight="normal">
-                    Welcome to organizing your remote office for maximum productivity.
+                    Welcome to optimizing Your Greenhouse for Maximum Productivity.
                 </Typography>
             </Box>
             <CardMedia
                 sx={{ minHeight: 280 }}
-                image="/static/images/placeholders/covers/6.jpg"
+                image="https://images.pexels.com/photos/1683328/pexels-photo-1683328.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                 title="Card Cover"
             />
             <Box p={3}>
                 <Typography variant="h2" sx={{ pb: 1 }}>
-                    Organizing Your Remote Office for Maximum Productivity
+                    Optimizing Your Greenhouse for Maximum Productivity
                 </Typography>
                 <Typography variant="subtitle2">
                     <Link href="#" underline="hover">
