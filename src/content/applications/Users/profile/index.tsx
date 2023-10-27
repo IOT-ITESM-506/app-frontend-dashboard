@@ -19,7 +19,7 @@ function ManagementUserProfile() {
         savedCards: 7,
         name: authContext.user?.first_name + ' ' + authContext.user?.last_name,
         coverImg: 'https://images.pexels.com/photos/2749165/pexels-photo-2749165.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-        avatar: '/static/images/avatars/avatar.png',
+        avatar: 'https://images.crunchbase.com/image/upload/c_lpad,f_auto,q_auto:eco,dpr_1/dl4yhkpeuwqwfmbqsfwc',
         description:
             "There are many variations of spassages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage",
         jobtitle: 'Web Developer',

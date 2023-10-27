@@ -113,7 +113,7 @@ function Avatars() {
                                 <Stack direction="row" spacing={2}>
                                     <Avatar
                                         alt="Remy Sharp"
-                                        src="/static/images/avatars/avatar.png"
+                                        src="https://images.crunchbase.com/image/upload/c_lpad,f_auto,q_auto:eco,dpr_1/dl4yhkpeuwqwfmbqsfwc"
                                         sx={{ width: 24, height: 24 }}
                                     />
                                     <Avatar alt="Remy Sharp" src="/static/images/avatars/5.jpg" />

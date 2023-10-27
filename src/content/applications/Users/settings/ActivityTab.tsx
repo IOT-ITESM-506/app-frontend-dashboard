@@ -36,7 +36,7 @@ function ActivityTab() {
     return (
         <Card>
             <CardHeader
-                avatar={<Avatar src="/static/images/avatars/5.jpg" />}
+                avatar={<Avatar src="https://images.crunchbase.com/image/upload/c_lpad,f_auto,q_auto:eco,dpr_1/dl4yhkpeuwqwfmbqsfwc" />}
                 action={
                     <IconButton color="primary">
                         <MoreHorizTwoToneIcon fontSize="medium" />

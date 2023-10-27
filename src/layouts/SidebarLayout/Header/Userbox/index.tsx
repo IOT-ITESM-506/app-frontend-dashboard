@@ -57,7 +57,7 @@ function HeaderUserbox() {
     const authContext = useContext(AuthContext);
     const user = {
         name: authContext.user?.first_name,
-        avatar: 'https://images.pexels.com/photos/1067333/pexels-photo-1067333.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+        avatar: 'https://images.crunchbase.com/image/upload/c_lpad,f_auto,q_auto:eco,dpr_1/dl4yhkpeuwqwfmbqsfwc',
         jobtitle: 'Project Manager'
     };
 

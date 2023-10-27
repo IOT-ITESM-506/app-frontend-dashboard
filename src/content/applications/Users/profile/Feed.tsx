@@ -35,7 +35,7 @@ function Feed() {
             name: 'Ede Stoving',
             jobtitle: 'VP Operations',
             company: 'Cogibox',
-            avatar: '/static/images/avatars/avatar.png'
+            avatar: 'https://images.crunchbase.com/image/upload/c_lpad,f_auto,q_auto:eco,dpr_1/dl4yhkpeuwqwfmbqsfwc'
         },
         {
             name: 'Crissy Spere',

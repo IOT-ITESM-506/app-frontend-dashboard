@@ -283,7 +283,7 @@ function SidebarContent() {
                         </ListItemWrapper>
                         <ListItemWrapper>
                             <ListItemAvatar>
-                                <Avatar src="https://images.pexels.com/photos/1067333/pexels-photo-1067333.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" />
+                                <Avatar src="https://images.crunchbase.com/image/upload/c_lpad,f_auto,q_auto:eco,dpr_1/dl4yhkpeuwqwfmbqsfwc" />
                             </ListItemAvatar>
                             <ListItemText
                                 sx={{
@@ -335,7 +335,7 @@ function SidebarContent() {
                         </ListItemWrapper>
                         <ListItemWrapper>
                             <ListItemAvatar>
-                                <Avatar src="https://images.pexels.com/photos/1067333/pexels-photo-1067333.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" />
+                                <Avatar src="https://images.crunchbase.com/image/upload/c_lpad,f_auto,q_auto:eco,dpr_1/dl4yhkpeuwqwfmbqsfwc" />
                             </ListItemAvatar>
                             <ListItemText
                                 sx={{
@@ -500,7 +500,7 @@ function SidebarContent() {
                                 component={RouterLink}
                                 to="#"
                                 alt="Travis Howard"
-                                src="https://images.pexels.com/photos/1067333/pexels-photo-1067333.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                                src="https://images.crunchbase.com/image/upload/c_lpad,f_auto,q_auto:eco,dpr_1/dl4yhkpeuwqwfmbqsfwc"
                             />
                         </Tooltip>
                         <Tooltip arrow title="View profile for Craig Vaccaro">

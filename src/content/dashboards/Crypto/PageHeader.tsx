@@ -10,7 +10,7 @@ function PageHeader() {
 
     const user = {
         name: authContext.user?.first_name + ' ' + authContext.user?.last_name,
-        avatar: '/static/images/avatars/avatar.png'
+        avatar: 'https://images.crunchbase.com/image/upload/c_lpad,f_auto,q_auto:eco,dpr_1/dl4yhkpeuwqwfmbqsfwc'
     };
     const theme = useTheme();
 

@@ -4,13 +4,8 @@ import {
     Card,
     Grid,
     Typography,
-    useTheme,
     styled,
     Avatar,
-    ListItem,
-    ListItemText,
-    List,
-    ListItemAvatar,
     Collapse,
     Table,
     TableBody,
@@ -21,8 +16,6 @@ import {
     IconButton,
     Paper,
 } from '@mui/material';
-import TrendingUpIcon from '@mui/icons-material/TrendingUp';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
@@ -36,58 +29,25 @@ const AvatarSuccess = styled(Avatar)(
 `
 );
 
-const ListItemAvatarWrapper = styled(ListItemAvatar)(
+const GreenCard = styled(Card)(
     ({ theme }) => `
-  min-width: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: ${theme.spacing(1)};
-  padding: ${theme.spacing(0.5)};
-  border-radius: 60px;
-  background: ${theme.palette.mode === 'dark'
-            ? theme.colors.alpha.trueWhite[30]
-            : theme.colors.alpha.trueWhite[10]};
-        };
-
-  img {
-    background: ${theme.colors.alpha.trueWhite[100]};
-    padding: ${theme.spacing(0.5)};
-    display: block;
-    border-radius: inherit;
-    height: ${theme.spacing(4.5)};
-    width: ${theme.spacing(4.5)};
-  }
+      box-shadow: 0 0 0px 0px ${theme.colors.success.main};
 `
 );
 
 function createData(
     name: string,
-    calories: number,
-    fat: number,
-    carbs: number,
-    protein: number,
-    price: number
+    location: string,
+    size: number,
+    description: string,
+    records: any[]
 ) {
     return {
         name,
-        calories,
-        fat,
-        carbs,
-        protein,
-        price,
-        history: [
-            {
-                date: '2020-01-05',
-                customerId: '11091700',
-                amount: 3,
-            },
-            {
-                date: '2020-01-02',
-                customerId: 'Anonymous',
-                amount: 1,
-            },
-        ],
+        location,
+        size,
+        description,
+        records,
     };
 }
 
@@ -110,40 +70,41 @@ function Row(props: { row: ReturnType<typeof createData> }) {
                 <TableCell component="th" scope="row">
                     {row.name}
                 </TableCell>
-                <TableCell align="right">{row.calories}</TableCell>
-                <TableCell align="right">{row.fat}</TableCell>
-                <TableCell align="right">{row.carbs}</TableCell>
-                <TableCell align="right">{row.protein}</TableCell>
+                <TableCell align="right">{row.location}</TableCell>
+                <TableCell align="right">{row.size}</TableCell>
+                <TableCell align="right">{row.description}</TableCell>
             </TableRow>
             <TableRow>
                 <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
                     <Collapse in={open} timeout="auto" unmountOnExit>
                         <Box sx={{ margin: 1 }}>
                             <Typography variant="h6" gutterBottom component="div">
-                                History
+                                Sensor Records
                             </Typography>
-                            <Table size="small" aria-label="purchases">
+                            <Table size="small" aria-label="records">
                                 <TableHead>
                                     <TableRow>
-                                        <TableCell>Date</TableCell>
-                                        <TableCell>Customer</TableCell>
-                                        <TableCell align="right">Amount</TableCell>
-                                        <TableCell align="right">Total price ($)</TableCell>
+                                        <TableCell>Timestamp</TableCell>
+                                        <TableCell>Temperature</TableCell>
+                                        <TableCell>Humidity</TableCell>
+                                        <TableCell>Luminosity</TableCell>
+                                        <TableCell>CO2 Level</TableCell>
+                                        <TableCell>Soil Moisture</TableCell>
+                                        <TableCell>pH</TableCell>
+                                        <TableCell>Nutrient Level</TableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {row.history.map((historyRow: any) => (
-                                        <TableRow key={historyRow.date}>
-                                            <TableCell component="th" scope="row">
-                                                {historyRow.date}
-                                            </TableCell>
-                                            <TableCell>{historyRow.customerId}</TableCell>
-                                            <TableCell align="right">{historyRow.amount}</TableCell>
-                                            <TableCell align="right">
-                                                {Math.round(
-                                                    historyRow.amount * row.price * 100
-                                                ) / 100}
-                                            </TableCell>
+                                    {row.records.map((record: any) => (
+                                        <TableRow key={record.timestamp}>
+                                            <TableCell>{record.timestamp}</TableCell>
+                                            <TableCell>{record.temperature}</TableCell>
+                                            <TableCell>{record.humidity}</TableCell>
+                                            <TableCell>{record.luminosity}</TableCell>
+                                            <TableCell>{record.CO2_level}</TableCell>
+                                            <TableCell>{record.soil_moisture}</TableCell>
+                                            <TableCell>{record.pH || '-'}</TableCell>
+                                            <TableCell>{record.nutrient_level || '-'}</TableCell>
                                         </TableRow>
                                     ))}
                                 </TableBody>
@@ -156,44 +117,80 @@ function Row(props: { row: ReturnType<typeof createData> }) {
     );
 }
 
-const rows = [
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0, 3.99),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3, 4.99),
-    createData('Eclair', 262, 16.0, 24, 6.0, 3.79),
-    createData('Cupcake', 305, 3.7, 67, 4.3, 2.5),
-    createData('Gingerbread', 356, 16.0, 49, 3.9, 1.5),
+// Sample data for multiple Greenhouses and SensorRecords
+const greenhouseData = [
+    {
+        name: 'Greenhouse 1',
+        location: 'Some Location 1',
+        size: 100,
+        description: 'Description of the greenhouse 1',
+        records: [
+            {
+                timestamp: '2023-01-01T12:00:00',
+                temperature: 25.5,
+                humidity: 60,
+                luminosity: 5000,
+                CO2_level: 400,
+                soil_moisture: 0.5,
+                pH: 6.5,
+                nutrient_level: 200,
+            },
+            // Add more records as needed
+        ],
+    },
+    {
+        name: 'Greenhouse 2',
+        location: 'Some Location 2',
+        size: 150,
+        description: 'Description of the greenhouse 2',
+        records: [
+            {
+                timestamp: '2023-01-02T14:30:00',
+                temperature: 24.0,
+                humidity: 55,
+                luminosity: 4800,
+                CO2_level: 410,
+                soil_moisture: 0.6,
+                pH: 6.8,
+                nutrient_level: 180,
+            },
+            // Add more records as needed
+        ],
+    },
+    // Add more greenhouses as needed
 ];
 
 function GreenhousesInfo() {
     return (
-        <Card>
-            <Grid>
-                <Box p={4}>
-                    <Typography variant="h3"  mb={2}>
-                        Greenhouses Information.
-                    </Typography>
-                    <TableContainer component={Paper}>
-                        <Table aria-label="collapsible table">
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell />
-                                    <TableCell>Dessert (100g serving)</TableCell>
-                                    <TableCell align="right">Calories</TableCell>
-                                    <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                                    <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                                    <TableCell align="right">Protein&nbsp;(g)</TableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {rows.map((row) => (
-                                    <Row key={row.name} row={row} />
-                                ))}
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
-                </Box>
-            </Grid>
-        </Card>
+        <GreenCard>
+            <Card>
+                <Grid>
+                    <Box p={4}>
+                        <Typography variant="h3" mb={2}>
+                            Greenhouses Information.
+                        </Typography>
+                        <TableContainer component={Paper}>
+                            <Table aria-label="collapsible table">
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell />
+                                        <TableCell>Greenhouse Name</TableCell>
+                                        <TableCell align="right">Location</TableCell>
+                                        <TableCell align="right">Size (sqm)</TableCell>
+                                        <TableCell align="right">Description</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {greenhouseData.map((greenhouse) => (
+                                        <Row key={greenhouse.name} row={greenhouse} />
+                                    ))}
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
+                    </Box>
+                </Grid>
+            </Card>
+        </GreenCard>
     );
 }
 

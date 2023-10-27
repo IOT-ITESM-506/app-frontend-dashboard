@@ -84,13 +84,13 @@ function Wallets() {
                     pb: 3
                 }}
             >
-                <Typography variant="h3">Wallets</Typography>
+                <Typography variant="h3">Greenhouses Status</Typography>
                 <Button
                     size="small"
                     variant="outlined"
                     startIcon={<AddTwoToneIcon fontSize="small" />}
                 >
-                    Add new wallet
+                    Add new greenhouse
                 </Button>
             </Box>
             <Grid container spacing={3}>
@@ -104,14 +104,14 @@ function Wallets() {
                             <AvatarWrapper>
                                 <img
                                     alt="BTC"
-                                    src="/static/images/placeholders/logo/bitcoin.png"
+                                    src="https://www.creativefabrica.com/wp-content/uploads/2022/05/07/Green-House-logo-design-growing-plants-Graphics-30185190-1-580x387.jpg"
                                 />
                             </AvatarWrapper>
                             <Typography variant="h5" noWrap>
-                                Bitcoin
+                                Greenhouse 1
                             </Typography>
                             <Typography variant="subtitle1" noWrap>
-                                BTC
+                                Jesus Raul
                             </Typography>
                             <Box
                                 sx={{
@@ -122,7 +122,7 @@ function Wallets() {
                                     $3,586.22
                                 </Typography>
                                 <Typography variant="subtitle2" noWrap>
-                                    1.25843 BTC
+                                    1.25843 sqm
                                 </Typography>
                             </Box>
                         </CardContent>
@@ -138,14 +138,14 @@ function Wallets() {
                             <AvatarWrapper>
                                 <img
                                     alt="Ripple"
-                                    src="/static/images/placeholders/logo/ripple.png"
+                                    src="https://static.vecteezy.com/system/resources/previews/010/624/288/non_2x/green-house-logo-design-template-farm-house-logo-template-vector.jpg"
                                 />
                             </AvatarWrapper>
                             <Typography variant="h5" noWrap>
-                                Ripple
+                                Greenhouse 2
                             </Typography>
                             <Typography variant="subtitle1" noWrap>
-                                XRP
+                                Jesus Raul
                             </Typography>
                             <Box
                                 sx={{
@@ -156,7 +156,7 @@ function Wallets() {
                                     $586.83
                                 </Typography>
                                 <Typography variant="subtitle2" noWrap>
-                                    5,783 XRP
+                                    5,783 sqm
                                 </Typography>
                             </Box>
                         </CardContent>
@@ -172,14 +172,14 @@ function Wallets() {
                             <AvatarWrapper>
                                 <img
                                     alt="Cardano"
-                                    src="/static/images/placeholders/logo/cardano.png"
+                                    src="https://img.freepik.com/premium-vector/greenhouse-logo_10250-3662.jpg"
                                 />
                             </AvatarWrapper>
                             <Typography variant="h5" noWrap>
-                                Cardano
+                                Greenhouse 3
                             </Typography>
                             <Typography variant="subtitle1" noWrap>
-                                ADA
+                                Jesus Raul
                             </Typography>
                             <Box
                                 sx={{
@@ -190,7 +190,7 @@ function Wallets() {
                                     $54,985.00
                                 </Typography>
                                 <Typography variant="subtitle2" noWrap>
-                                    34,985 ADA
+                                    34,985 sqm
                                 </Typography>
                             </Box>
                         </CardContent>
