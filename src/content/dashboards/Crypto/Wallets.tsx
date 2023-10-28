@@ -11,7 +11,10 @@ import {
     CardActionArea,
     styled
 } from '@mui/material';
+import { useContext } from 'react';
 import AddTwoToneIcon from '@mui/icons-material/AddTwoTone';
+import { AuthContext } from 'src/contexts/AuthContext';
+import { IGreenhouse } from 'src/types/Greenhouse';
 
 const AvatarWrapper = styled(Avatar)(
     ({ theme }) => `
@@ -74,6 +77,8 @@ const CardAddAction = styled(Card)(
 );
 
 function Wallets() {
+    const { greenhouses, user } = useContext(AuthContext);
+
     return (
         <>
             <Box
@@ -94,108 +99,44 @@ function Wallets() {
                 </Button>
             </Box>
             <Grid container spacing={3}>
-                <Grid xs={12} sm={6} md={3} item>
-                    <Card
-                        sx={{
-                            px: 1
-                        }}
-                    >
-                        <CardContent>
-                            <AvatarWrapper>
-                                <img
-                                    alt="BTC"
-                                    src="https://www.creativefabrica.com/wp-content/uploads/2022/05/07/Green-House-logo-design-growing-plants-Graphics-30185190-1-580x387.jpg"
-                                />
-                            </AvatarWrapper>
-                            <Typography variant="h5" noWrap>
-                                Greenhouse 1
-                            </Typography>
-                            <Typography variant="subtitle1" noWrap>
-                                Jesus Raul
-                            </Typography>
-                            <Box
+                {greenhouses.map((greenhouse: IGreenhouse) => {
+                    return (
+                        <Grid key={greenhouse.name} xs={12} sm={6} md={3} item>
+                            <Card
                                 sx={{
-                                    pt: 3
+                                    px: 1
                                 }}
                             >
-                                <Typography variant="h3" gutterBottom noWrap>
-                                    $3,586.22
-                                </Typography>
-                                <Typography variant="subtitle2" noWrap>
-                                    1.25843 sqm
-                                </Typography>
-                            </Box>
-                        </CardContent>
-                    </Card>
-                </Grid>
-                <Grid xs={12} sm={6} md={3} item>
-                    <Card
-                        sx={{
-                            px: 1
-                        }}
-                    >
-                        <CardContent>
-                            <AvatarWrapper>
-                                <img
-                                    alt="Ripple"
-                                    src="https://static.vecteezy.com/system/resources/previews/010/624/288/non_2x/green-house-logo-design-template-farm-house-logo-template-vector.jpg"
-                                />
-                            </AvatarWrapper>
-                            <Typography variant="h5" noWrap>
-                                Greenhouse 2
-                            </Typography>
-                            <Typography variant="subtitle1" noWrap>
-                                Jesus Raul
-                            </Typography>
-                            <Box
-                                sx={{
-                                    pt: 3
-                                }}
-                            >
-                                <Typography variant="h3" gutterBottom noWrap>
-                                    $586.83
-                                </Typography>
-                                <Typography variant="subtitle2" noWrap>
-                                    5,783 sqm
-                                </Typography>
-                            </Box>
-                        </CardContent>
-                    </Card>
-                </Grid>
-                <Grid xs={12} sm={6} md={3} item>
-                    <Card
-                        sx={{
-                            px: 1
-                        }}
-                    >
-                        <CardContent>
-                            <AvatarWrapper>
-                                <img
-                                    alt="Cardano"
-                                    src="https://img.freepik.com/premium-vector/greenhouse-logo_10250-3662.jpg"
-                                />
-                            </AvatarWrapper>
-                            <Typography variant="h5" noWrap>
-                                Greenhouse 3
-                            </Typography>
-                            <Typography variant="subtitle1" noWrap>
-                                Jesus Raul
-                            </Typography>
-                            <Box
-                                sx={{
-                                    pt: 3
-                                }}
-                            >
-                                <Typography variant="h3" gutterBottom noWrap>
-                                    $54,985.00
-                                </Typography>
-                                <Typography variant="subtitle2" noWrap>
-                                    34,985 sqm
-                                </Typography>
-                            </Box>
-                        </CardContent>
-                    </Card>
-                </Grid>
+                                <CardContent>
+                                    <AvatarWrapper>
+                                        <img
+                                            alt="BTC"
+                                            src={greenhouse.logo}
+                                        />
+                                    </AvatarWrapper>
+                                    <Typography variant="h5" noWrap>
+                                        {greenhouse.name}
+                                    </Typography>
+                                    <Typography variant="subtitle1" noWrap>
+                                        {user?.first_name} {user?.last_name}
+                                    </Typography>
+                                    <Box
+                                        sx={{
+                                            pt: 3
+                                        }}
+                                    >
+                                        <Typography variant="h3" gutterBottom noWrap>
+                                            $3,586.22
+                                        </Typography>
+                                        <Typography variant="subtitle2" noWrap>
+                                            {greenhouse.size} sqm
+                                        </Typography>
+                                    </Box>
+                                </CardContent>
+                            </Card>
+                        </Grid>
+                    )
+                })}
                 <Grid xs={12} sm={6} md={3} item>
                     <Tooltip arrow title="Click to add a new wallet">
                         <CardAddAction>

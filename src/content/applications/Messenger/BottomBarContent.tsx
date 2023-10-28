@@ -53,22 +53,6 @@ function BottomBarContent() {
                 />
             </Box>
             <Box>
-                <Tooltip arrow placement="top" title="Choose an emoji">
-                    <IconButton
-                        sx={{ fontSize: theme.typography.pxToRem(16) }}
-                        color="primary"
-                    >
-                        😀
-                    </IconButton>
-                </Tooltip>
-                <Input accept="image/*" id="messenger-upload-file" type="file" />
-                <Tooltip arrow placement="top" title="Attach a file">
-                    <label htmlFor="messenger-upload-file">
-                        <IconButton sx={{ mx: 1 }} color="primary" component="span">
-                            <AttachFileTwoToneIcon fontSize="small" />
-                        </IconButton>
-                    </label>
-                </Tooltip>
                 <Button startIcon={<SendTwoToneIcon />} variant="contained">
                     Send
                 </Button>

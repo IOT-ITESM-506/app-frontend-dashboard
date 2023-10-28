@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {
     Box,
     Card,
@@ -18,16 +18,7 @@ import {
 } from '@mui/material';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-
-const AvatarSuccess = styled(Avatar)(
-    ({ theme }) => `
-      background-color: ${theme.colors.success.main};
-      color: ${theme.palette.success.contrastText};
-      width: ${theme.spacing(8)};
-      height: ${theme.spacing(8)};
-      box-shadow: ${theme.colors.shadows.success};
-`
-);
+import { AuthContext } from 'src/contexts/AuthContext';
 
 const GreenCard = styled(Card)(
     ({ theme }) => `
@@ -117,50 +108,9 @@ function Row(props: { row: ReturnType<typeof createData> }) {
     );
 }
 
-// Sample data for multiple Greenhouses and SensorRecords
-const greenhouseData = [
-    {
-        name: 'Greenhouse 1',
-        location: 'Some Location 1',
-        size: 100,
-        description: 'Description of the greenhouse 1',
-        records: [
-            {
-                timestamp: '2023-01-01T12:00:00',
-                temperature: 25.5,
-                humidity: 60,
-                luminosity: 5000,
-                CO2_level: 400,
-                soil_moisture: 0.5,
-                pH: 6.5,
-                nutrient_level: 200,
-            },
-            // Add more records as needed
-        ],
-    },
-    {
-        name: 'Greenhouse 2',
-        location: 'Some Location 2',
-        size: 150,
-        description: 'Description of the greenhouse 2',
-        records: [
-            {
-                timestamp: '2023-01-02T14:30:00',
-                temperature: 24.0,
-                humidity: 55,
-                luminosity: 4800,
-                CO2_level: 410,
-                soil_moisture: 0.6,
-                pH: 6.8,
-                nutrient_level: 180,
-            },
-            // Add more records as needed
-        ],
-    },
-    // Add more greenhouses as needed
-];
-
 function GreenhousesInfo() {
+    const { greenhouses } = useContext(AuthContext)
+ 
     return (
         <GreenCard>
             <Card>
@@ -181,7 +131,7 @@ function GreenhousesInfo() {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {greenhouseData.map((greenhouse) => (
+                                    {greenhouses.map((greenhouse) => (
                                         <Row key={greenhouse.name} row={greenhouse} />
                                     ))}
                                 </TableBody>

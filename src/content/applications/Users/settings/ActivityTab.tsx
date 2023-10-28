@@ -20,6 +20,7 @@ import CommentTwoToneIcon from '@mui/icons-material/CommentTwoTone';
 import ShareTwoToneIcon from '@mui/icons-material/ShareTwoTone';
 import Text from 'src/components/Text';
 import { AuthContext } from 'src/contexts/AuthContext';
+import { USER_PROFILE_PICTURE } from 'src/utils/utils';
 
 const CardActionsWrapper = styled(CardActions)(
     ({ theme }) => `
@@ -30,13 +31,10 @@ const CardActionsWrapper = styled(CardActions)(
 
 function ActivityTab() {
     const { user } = useContext(AuthContext);
-
-    console.log(user);
-
     return (
         <Card>
             <CardHeader
-                avatar={<Avatar src="https://images.crunchbase.com/image/upload/c_lpad,f_auto,q_auto:eco,dpr_1/dl4yhkpeuwqwfmbqsfwc" />}
+                avatar={<Avatar src={USER_PROFILE_PICTURE} />}
                 action={
                     <IconButton color="primary">
                         <MoreHorizTwoToneIcon fontSize="medium" />

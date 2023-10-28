@@ -3,14 +3,15 @@ import { Typography, Avatar, Grid, Button } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
 import { AuthContext } from 'src/contexts/AuthContext';
-import AddGreenhouseModal from 'src/layouts/SidebarLayout/Header/AddGreenhouseModal/AddGreenhouseModal';
+import { USER_PROFILE_PICTURE } from 'src/utils/utils';
+
 
 function PageHeader() {
     const authContext = useContext(AuthContext);
 
     const user = {
         name: authContext.user?.first_name + ' ' + authContext.user?.last_name,
-        avatar: 'https://images.crunchbase.com/image/upload/c_lpad,f_auto,q_auto:eco,dpr_1/dl4yhkpeuwqwfmbqsfwc'
+        avatar: USER_PROFILE_PICTURE
     };
     const theme = useTheme();
 

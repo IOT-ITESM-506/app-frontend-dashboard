@@ -10,6 +10,7 @@ import {
 } from '@mui/material';
 
 import AddTwoToneIcon from '@mui/icons-material/AddTwoTone';
+import { USER_PROFILE_PICTURE } from 'src/utils/utils';
 
 function Feed() {
     const feed = [
@@ -35,7 +36,7 @@ function Feed() {
             name: 'Ede Stoving',
             jobtitle: 'VP Operations',
             company: 'Cogibox',
-            avatar: 'https://images.crunchbase.com/image/upload/c_lpad,f_auto,q_auto:eco,dpr_1/dl4yhkpeuwqwfmbqsfwc'
+            avatar: USER_PROFILE_PICTURE
         },
         {
             name: 'Crissy Spere',

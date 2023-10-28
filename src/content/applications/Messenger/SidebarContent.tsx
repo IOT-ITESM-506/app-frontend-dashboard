@@ -1,9 +1,7 @@
-import { useState, ChangeEvent } from 'react';
+import { useState, ChangeEvent, useContext } from 'react';
 import {
     Box,
     Typography,
-    FormControlLabel,
-    Switch,
     Tabs,
     Tab,
     TextField,
@@ -11,23 +9,20 @@ import {
     InputAdornment,
     Avatar,
     List,
-    Button,
-    Tooltip,
     Divider,
-    AvatarGroup,
     ListItemButton,
     ListItemAvatar,
     ListItemText,
     lighten,
     styled
 } from '@mui/material';
-import { formatDistance, subMinutes, subHours } from 'date-fns';
 import SettingsTwoToneIcon from '@mui/icons-material/SettingsTwoTone';
 import SearchTwoToneIcon from '@mui/icons-material/SearchTwoTone';
 import Label from 'src/components/Label';
 import CheckTwoToneIcon from '@mui/icons-material/CheckTwoTone';
-import AlarmTwoToneIcon from '@mui/icons-material/AlarmTwoTone';
-import { Link as RouterLink } from 'react-router-dom';
+import { AuthContext } from 'src/contexts/AuthContext';
+import { USER_PROFILE_PICTURE } from 'src/utils/utils';
+import { IGreenhouse } from 'src/types/Greenhouse';
 
 const AvatarSuccess = styled(Avatar)(
     ({ theme }) => `
@@ -93,9 +88,11 @@ const TabsContainerWrapper = styled(Box)(
 );
 
 function SidebarContent() {
-    const user = {
-        name: 'Catherine Pike',
-        avatar: '/static/images/avatars/1.jpg',
+    const { user, greenhouses } = useContext(AuthContext);
+
+    const user_data = {
+        name: user?.first_name,
+        avatar: USER_PROFILE_PICTURE,
         jobtitle: 'Software Developer'
     };
 
@@ -115,7 +112,6 @@ function SidebarContent() {
     const tabs = [
         { value: 'all', label: 'All' },
         { value: 'unread', label: 'Unread' },
-        { value: 'archived', label: 'Archived' }
     ];
 
     const handleTabsChange = (_event: ChangeEvent<{}>, value: string): void => {
@@ -125,7 +121,7 @@ function SidebarContent() {
     return (
         <RootWrapper>
             <Box display="flex" alignItems="flex-start">
-                <Avatar alt={user.name} src={user.avatar} />
+                <Avatar alt={user_data.name} src={user_data.avatar} />
                 <Box
                     sx={{
                         ml: 1.5,
@@ -139,10 +135,10 @@ function SidebarContent() {
                     >
                         <Box>
                             <Typography variant="h5" noWrap>
-                                {user.name}
+                                {user_data.name}
                             </Typography>
                             <Typography variant="subtitle1" noWrap>
-                                {user.jobtitle}
+                                {user_data.jobtitle}
                             </Typography>
                         </Box>
                         <IconButton
@@ -155,18 +151,6 @@ function SidebarContent() {
                             <SettingsTwoToneIcon fontSize="small" />
                         </IconButton>
                     </Box>
-
-                    <FormControlLabel
-                        control={
-                            <Switch
-                                checked={state.invisible}
-                                onChange={handleChange}
-                                name="invisible"
-                                color="primary"
-                            />
-                        }
-                        label="Invisible"
-                    />
                 </Box>
             </Box>
 
@@ -194,7 +178,7 @@ function SidebarContent() {
                 }}
                 variant="h3"
             >
-                Chats
+                Alerts
             </Typography>
 
             <TabsContainerWrapper>
@@ -215,96 +199,31 @@ function SidebarContent() {
             <Box mt={2}>
                 {currentTab === 'all' && (
                     <List disablePadding component="div">
-                        <ListItemWrapper selected>
-                            <ListItemAvatar>
-                                <Avatar src="/static/images/avatars/1.jpg" />
-                            </ListItemAvatar>
-                            <ListItemText
-                                sx={{
-                                    mr: 1
-                                }}
-                                primaryTypographyProps={{
-                                    color: 'textPrimary',
-                                    variant: 'h5',
-                                    noWrap: true
-                                }}
-                                secondaryTypographyProps={{
-                                    color: 'textSecondary',
-                                    noWrap: true
-                                }}
-                                primary="Zain Baptista"
-                                secondary="Hey there, how are you today? Is it ok if I call you?"
-                            />
-                            <Label color="primary">
-                                <b>2</b>
-                            </Label>
-                        </ListItemWrapper>
-                        <ListItemWrapper>
-                            <ListItemAvatar>
-                                <Avatar src="/static/images/avatars/2.jpg" />
-                            </ListItemAvatar>
-                            <ListItemText
-                                sx={{
-                                    mr: 1
-                                }}
-                                primaryTypographyProps={{
-                                    color: 'textPrimary',
-                                    variant: 'h5',
-                                    noWrap: true
-                                }}
-                                secondaryTypographyProps={{
-                                    color: 'textSecondary',
-                                    noWrap: true
-                                }}
-                                primary="Kierra Herwitz"
-                                secondary="Hi! Did you manage to send me those documents"
-                            />
-                        </ListItemWrapper>
-                        <ListItemWrapper>
-                            <ListItemAvatar>
-                                <Avatar src="/static/images/avatars/3.jpg" />
-                            </ListItemAvatar>
-                            <ListItemText
-                                sx={{
-                                    mr: 1
-                                }}
-                                primaryTypographyProps={{
-                                    color: 'textPrimary',
-                                    variant: 'h5',
-                                    noWrap: true
-                                }}
-                                secondaryTypographyProps={{
-                                    color: 'textSecondary',
-                                    noWrap: true
-                                }}
-                                primary="Craig Vaccaro"
-                                secondary="Ola, I still haven't received the program schedule"
-                            />
-                        </ListItemWrapper>
-                        <ListItemWrapper>
-                            <ListItemAvatar>
-                                <Avatar src="https://images.crunchbase.com/image/upload/c_lpad,f_auto,q_auto:eco,dpr_1/dl4yhkpeuwqwfmbqsfwc" />
-                            </ListItemAvatar>
-                            <ListItemText
-                                sx={{
-                                    mr: 1
-                                }}
-                                primaryTypographyProps={{
-                                    color: 'textPrimary',
-                                    variant: 'h5',
-                                    noWrap: true
-                                }}
-                                secondaryTypographyProps={{
-                                    color: 'textSecondary',
-                                    noWrap: true
-                                }}
-                                primary="Adison Press"
-                                secondary="I recently did some buying on Amazon and now I'm stuck"
-                            />
-                            <Label color="primary">
-                                <b>8</b>
-                            </Label>
-                        </ListItemWrapper>
+                        {greenhouses.map((greenhouse: IGreenhouse) => {
+                            return (
+                                <ListItemWrapper selected key={greenhouse.name}>
+                                    <ListItemAvatar>
+                                        <Avatar src={greenhouse.logo} />
+                                    </ListItemAvatar>
+                                    <ListItemText
+                                        sx={{
+                                            mr: 1
+                                        }}
+                                        primaryTypographyProps={{
+                                            color: 'textPrimary',
+                                            variant: 'h5',
+                                            noWrap: true
+                                        }}
+                                        secondaryTypographyProps={{
+                                            color: 'textSecondary',
+                                            noWrap: true
+                                        }}
+                                        primary={greenhouse.name}
+                                        secondary={greenhouse.description}
+                                    />
+                                </ListItemWrapper>
+                            )
+                        })}
                     </List>
                 )}
                 {currentTab === 'unread' && (
@@ -335,7 +254,7 @@ function SidebarContent() {
                         </ListItemWrapper>
                         <ListItemWrapper>
                             <ListItemAvatar>
-                                <Avatar src="https://images.crunchbase.com/image/upload/c_lpad,f_auto,q_auto:eco,dpr_1/dl4yhkpeuwqwfmbqsfwc" />
+                                <Avatar src={USER_PROFILE_PICTURE} />
                             </ListItemAvatar>
                             <ListItemText
                                 sx={{
@@ -359,169 +278,7 @@ function SidebarContent() {
                         </ListItemWrapper>
                     </List>
                 )}
-                {currentTab === 'archived' && (
-                    <Box pb={3}>
-                        <Divider
-                            sx={{
-                                mb: 3
-                            }}
-                        />
-                        <AvatarSuccess>
-                            <CheckTwoToneIcon />
-                        </AvatarSuccess>
-                        <Typography
-                            sx={{
-                                mt: 2,
-                                textAlign: 'center'
-                            }}
-                            variant="subtitle2"
-                        >
-                            Hurray! There are no archived chats!
-                        </Typography>
-                        <Divider
-                            sx={{
-                                mt: 3
-                            }}
-                        />
-                    </Box>
-                )}
             </Box>
-            <Box display="flex" pb={1} mt={4} alignItems="center">
-                <Typography
-                    sx={{
-                        mr: 1
-                    }}
-                    variant="h3"
-                >
-                    Meetings
-                </Typography>
-                <Label color="success">
-                    <b>2</b>
-                </Label>
-            </Box>
-            <MeetingBox>
-                <Typography variant="h4">Daily Design Meeting</Typography>
-
-                <Box py={3} display="flex" alignItems="flex-start">
-                    <AlarmTwoToneIcon />
-                    <Box pl={1}>
-                        <Typography
-                            variant="subtitle2"
-                            sx={{
-                                lineHeight: 1
-                            }}
-                            color="text.primary"
-                        >
-                            10:00 - 11:30
-                        </Typography>
-                        <Typography variant="subtitle1">
-                            {formatDistance(subMinutes(new Date(), 12), new Date(), {
-                                addSuffix: true
-                            })}
-                        </Typography>
-                    </Box>
-                </Box>
-                <Box display="flex" alignItems="center" justifyContent="space-between">
-                    <AvatarGroup>
-                        <Tooltip arrow title="View profile for Remy Sharp">
-                            <Avatar
-                                sx={{
-                                    width: 28,
-                                    height: 28
-                                }}
-                                component={RouterLink}
-                                to="#"
-                                alt="Remy Sharp"
-                                src="/static/images/avatars/1.jpg"
-                            />
-                        </Tooltip>
-                        <Tooltip arrow title="View profile for Travis Howard">
-                            <Avatar
-                                sx={{
-                                    width: 28,
-                                    height: 28
-                                }}
-                                component={RouterLink}
-                                to="#"
-                                alt="Travis Howard"
-                                src="/static/images/avatars/2.jpg"
-                            />
-                        </Tooltip>
-                        <Tooltip arrow title="View profile for Craig Vaccaro">
-                            <Avatar
-                                sx={{
-                                    width: 28,
-                                    height: 28
-                                }}
-                                component={RouterLink}
-                                to="#"
-                                alt="Craig Vaccaro"
-                                src="/static/images/avatars/3.jpg"
-                            />
-                        </Tooltip>
-                    </AvatarGroup>
-
-                    <Button variant="contained" size="small">
-                        Attend
-                    </Button>
-                </Box>
-            </MeetingBox>
-
-            <MeetingBox>
-                <Typography variant="h4">Investors Council Meeting</Typography>
-
-                <Box py={3} display="flex" alignItems="flex-start">
-                    <AlarmTwoToneIcon />
-                    <Box pl={1}>
-                        <Typography
-                            variant="subtitle2"
-                            sx={{
-                                lineHeight: 1
-                            }}
-                            color="text.primary"
-                        >
-                            14:30 - 16:15
-                        </Typography>
-                        <Typography variant="subtitle1">
-                            {formatDistance(subHours(new Date(), 4), new Date(), {
-                                addSuffix: true
-                            })}
-                        </Typography>
-                    </Box>
-                </Box>
-                <Box display="flex" alignItems="center" justifyContent="space-between">
-                    <AvatarGroup>
-                        <Tooltip arrow title="View profile for Travis Howard">
-                            <Avatar
-                                sx={{
-                                    width: 28,
-                                    height: 28
-                                }}
-                                component={RouterLink}
-                                to="#"
-                                alt="Travis Howard"
-                                src="https://images.crunchbase.com/image/upload/c_lpad,f_auto,q_auto:eco,dpr_1/dl4yhkpeuwqwfmbqsfwc"
-                            />
-                        </Tooltip>
-                        <Tooltip arrow title="View profile for Craig Vaccaro">
-                            <Avatar
-                                sx={{
-                                    width: 28,
-                                    height: 28
-                                }}
-                                component={RouterLink}
-                                to="#"
-                                alt="Craig Vaccaro"
-                                src="/static/images/avatars/5.jpg"
-                            />
-                        </Tooltip>
-                    </AvatarGroup>
-
-                    <Button variant="contained" size="small">
-                        Attend
-                    </Button>
-                </Box>
-            </MeetingBox>
         </RootWrapper>
     );
 }

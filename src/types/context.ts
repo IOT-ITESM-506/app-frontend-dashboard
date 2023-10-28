@@ -16,6 +16,7 @@ interface AuthContextType {
 
     navbarIsActive: boolean;
     setNavbarIsActive: (value: boolean) => void;
+    greenhouses: any;
 }
 
 interface AuthProviderProps {

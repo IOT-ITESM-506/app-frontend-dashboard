@@ -17,6 +17,8 @@ import AccountTreeTwoToneIcon from '@mui/icons-material/AccountTreeTwoTone';
 import { AuthContext } from 'src/contexts/AuthContext';
 import AddGreenhouseModal from 'src/layouts/SidebarLayout/Header/AddGreenhouseModal/AddGreenhouseModal';
 
+import { USER_PROFILE_PICTURE } from 'src/utils/utils';
+
 const UserBoxButton = styled(Button)(
     ({ theme }) => `
         padding-left: ${theme.spacing(1)};
@@ -57,7 +59,7 @@ function HeaderUserbox() {
     const authContext = useContext(AuthContext);
     const user = {
         name: authContext.user?.first_name,
-        avatar: 'https://images.crunchbase.com/image/upload/c_lpad,f_auto,q_auto:eco,dpr_1/dl4yhkpeuwqwfmbqsfwc',
+        avatar: USER_PROFILE_PICTURE,
         jobtitle: 'Project Manager'
     };
 

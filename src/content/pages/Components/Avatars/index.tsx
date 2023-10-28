@@ -17,6 +17,8 @@ import FolderIcon from '@mui/icons-material/Folder';
 import PageviewIcon from '@mui/icons-material/Pageview';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 
+import { USER_PROFILE_PICTURE } from 'src/utils/utils';
+
 function stringToColor(string: string) {
     let hash = 0;
     let i;
@@ -32,7 +34,6 @@ function stringToColor(string: string) {
         const value = (hash >> (i * 8)) & 0xff;
         color += `00${value.toString(16)}`.substr(-2);
     }
-    /* eslint-enable no-bitwise */
 
     return color;
 }
@@ -113,7 +114,7 @@ function Avatars() {
                                 <Stack direction="row" spacing={2}>
                                     <Avatar
                                         alt="Remy Sharp"
-                                        src="https://images.crunchbase.com/image/upload/c_lpad,f_auto,q_auto:eco,dpr_1/dl4yhkpeuwqwfmbqsfwc"
+                                        src={USER_PROFILE_PICTURE}
                                         sx={{ width: 24, height: 24 }}
                                     />
                                     <Avatar alt="Remy Sharp" src="/static/images/avatars/5.jpg" />
