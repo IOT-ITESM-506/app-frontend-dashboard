@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 
 import { Helmet } from 'react-helmet-async';
 import PageHeader from './PageHeader';
@@ -14,7 +14,8 @@ import NotFoundPage from 'src/content/notFound/NotFoundPage';
 import { AuthContext } from 'src/contexts/AuthContext';
 
 function DashboardHome() {
-    const { greenhouses } = useContext(AuthContext);    
+    const { greenhouses } = useContext(AuthContext);
+
     return (
         <>
             <Helmet>

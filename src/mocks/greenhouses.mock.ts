@@ -1,73 +1,66 @@
-import { IGreenhouse } from "src/types/Greenhouse"
+import { IGreenhouse, IGreenhouseWithRecords, IRecord } from "src/types/Greenhouse"
 
-const greenhousesMock = [
+const mockGreenhouses: IGreenhouse[] = [
     {
-        name: 'Organic Greens Hub',
-        location: 'Sunny Valley, CA',
-        size: 120,
-        description: 'A modern greenhouse specializing in organic vegetables.',
-        logo: 'https://images.pexels.com/photos/1459497/pexels-photo-1459497.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-        records: [
-            {
-                timestamp: '2023-01-01T12:00:00',
-                temperature: 26.5,
-                humidity: 65,
-                luminosity: 5500,
-                CO2_level: 420,
-                soil_moisture: 0.6,
-                pH: 6.2,
-                nutrient_level: 220,
-            },
-        ],
+        name: 'Greenhouse A',
+        location: 'Location A',
+        size: 150,
+        greenhouse_description: 'Description A',
+        logo: 'path/to/logoA.png',
+        is_active: true,
+        sensor_record_circuit_id: 'f47ac10b-58cc-4372-a567-0e02b2c3d479',
+        user: 'JaneDoe',
     },
     {
-        name: 'Floral Harmony Garden',
-        location: 'Mountain View, CO',
-        size: 180,
-        description: 'A family-owned greenhouse with a focus on flowers and herbs.',
-        logo: 'https://images.pexels.com/photos/1093216/pexels-photo-1093216.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-        records: [
-            {
-                timestamp: '2023-02-05T15:45:00',
-                temperature: 22.0,
-                humidity: 50,
-                luminosity: 4800,
-                CO2_level: 400,
-                soil_moisture: 0.5,
-                pH: 6.8,
-                nutrient_level: 190,
-            },
-        ],
+        name: 'Greenhouse B',
+        location: 'Location B',
+        size: 200,
+        greenhouse_description: 'Description B',
+        logo: 'path/to/logoB.png',
+        is_active: false,
+        sensor_record_circuit_id: '123e4567-e89b-12d3-a456-426614174001',
+        user: 'BobSmith',
     },
-    {
-        name: 'Sustainable Innovations Lab',
-        location: 'Coastal Farm, OR',
-        size: 250,
-        description: 'An experimental greenhouse researching sustainable practices.',
-        logo: 'https://images.pexels.com/photos/399969/pexels-photo-399969.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-        records: [
-            {
-                timestamp: '2023-03-10T09:30:00',
-                temperature: 28.0,
-                humidity: 70,
-                luminosity: 6000,
-                CO2_level: 450,
-                soil_moisture: 0.7,
-                pH: 6.0,
-                nutrient_level: 200,
-            },
-            {
-                timestamp: '2023-03-12T11:15:00',
-                temperature: 25.5,
-                humidity: 65,
-                luminosity: 5800,
-                CO2_level: 430,
-                soil_moisture: 0.6,
-                pH: 6.5,
-                nutrient_level: 210,
-            },
-        ],
-    },
-] as IGreenhouse[]
+];
 
-export { greenhousesMock }
+const mockRecords: IRecord[] = [
+    {
+        temperature: 22,
+        humidity: 55,
+        luminosity: 1000,
+        CO2_level: 350,
+        soil_moisture: 35,
+        pH: 7.0,
+        nutrient_level: 180,
+        greenhouse: 'Greenhouse A',
+        timestamp: '2023-10-31T12:15:00',
+        sensor_record_circuit_id: 'f47ac10b-58cc-4372-a567-0e02b2c3d479',
+    },
+    {
+        temperature: 28,
+        humidity: 65,
+        luminosity: 1200,
+        CO2_level: 450,
+        soil_moisture: 45,
+        pH: 6.0,
+        nutrient_level: 220,
+        greenhouse: 'Greenhouse B',
+        timestamp: '2023-10-31T12:30:00',
+        sensor_record_circuit_id: '123e4567-e89b-12d3-a456-426614174001',
+    },
+    {
+        temperature: 28,
+        humidity: 65,
+        luminosity: 1200,
+        CO2_level: 450,
+        soil_moisture: 45,
+        pH: 6.0,
+        nutrient_level: 220,
+        greenhouse: 'Greenhouse B',
+        timestamp: '2023-10-31T12:30:00',
+        sensor_record_circuit_id: '123e4567-e89b-12d3-a456-426614174001',
+    },
+];
+
+
+export { mockGreenhouses, mockRecords }

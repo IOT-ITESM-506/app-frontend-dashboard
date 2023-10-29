@@ -201,7 +201,7 @@ function SidebarContent() {
                                             noWrap: true
                                         }}
                                         primary={greenhouse.name}
-                                        secondary={greenhouse.description}
+                                        secondary={greenhouse.greenhouse_description}
                                     />
                                 </ListItemWrapper>
                             )

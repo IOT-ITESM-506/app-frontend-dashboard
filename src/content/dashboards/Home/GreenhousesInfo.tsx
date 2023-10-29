@@ -1,24 +1,11 @@
-import React, { useContext, useState } from 'react';
-import {
-    Box,
-    Card,
-    Grid,
-    Typography,
-    styled,
-    Avatar,
-    Collapse,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-    IconButton,
-    Paper,
-} from '@mui/material';
+import React, { useContext, useState, useEffect } from 'react';
+import { Box, Card, Grid, Typography, styled, Collapse, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, IconButton, Paper } from '@mui/material';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { AuthContext } from 'src/contexts/AuthContext';
+
+import { mergeGreenhousesAndRecords } from 'src/utils/utils';
+import { mockGreenhouses, mockRecords } from 'src/mocks/greenhouses.mock';
 
 const GreenCard = styled(Card)(
     ({ theme }) => `
@@ -65,7 +52,7 @@ function Row(props: { row: ReturnType<typeof createData> }) {
                 <TableCell align="right">{row.size}</TableCell>
                 <TableCell align="right">{row.greenhouse_description}</TableCell>
             </TableRow>
-            {/* <TableRow>
+            <TableRow>
                 <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
                     <Collapse in={open} timeout="auto" unmountOnExit>
                         <Box sx={{ margin: 1 }}>
@@ -103,13 +90,20 @@ function Row(props: { row: ReturnType<typeof createData> }) {
                         </Box>
                     </Collapse>
                 </TableCell>
-            </TableRow> */}
+            </TableRow>
         </>
     );
 }
 
 function GreenhousesInfo() {
     const { greenhouses } = useContext(AuthContext)
+    const [mergedGreenhouses, setMergedGreenhouses] = useState<any>([])
+
+
+    useEffect(() => {
+        const data = mergeGreenhousesAndRecords(mockGreenhouses, mockRecords);
+        setMergedGreenhouses(data)
+    },[])
  
     return (
         <GreenCard>
@@ -131,7 +125,7 @@ function GreenhousesInfo() {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {greenhouses.map((greenhouse) => (
+                                    {mergedGreenhouses.map((greenhouse) => (
                                         <Row key={greenhouse.name} row={greenhouse} />
                                     ))}
                                 </TableBody>

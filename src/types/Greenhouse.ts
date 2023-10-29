@@ -1,5 +1,4 @@
 interface IRecord  {
-    timestamp: string;
     temperature: number;
     humidity: number;
     luminosity: number;
@@ -7,6 +6,10 @@ interface IRecord  {
     soil_moisture: number;
     pH: number;
     nutrient_level: number;
+
+    greenhouse: string;
+    timestamp: string;
+    sensor_record_circuit_id: string;
 };
 
 
@@ -14,11 +17,16 @@ interface IGreenhouse {
     name: string;
     location: string;
     size: number;
-    description: string;
-
+    greenhouse_description: string;
     logo: string;
-    records: IRecord[];
+    is_active: boolean;
+    sensor_record_circuit_id: string;
+    user: string;
 };
 
+interface IGreenhouseWithRecords extends IGreenhouse {
+    records: IRecord[];
+}
 
-export type { IGreenhouse, IRecord };
+
+export type { IGreenhouse, IRecord, IGreenhouseWithRecords };
