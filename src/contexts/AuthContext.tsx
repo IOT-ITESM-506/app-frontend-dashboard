@@ -1,9 +1,9 @@
-import { createContext, useEffect, useReducer, ReactNode, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { BACKEND_URL } from "src/config/env";
 
 import jwtDecode from "jwt-decode";
 
-import { AuthContextType, AuthProviderProps, AuthTokens } from "src/types/context";
+import { AuthContextType, AuthProviderProps } from "src/types/context";
 import { IGreenhouse } from "src/types/Greenhouse";
 
 export const AuthContext = createContext<AuthContextType | null>(null);
@@ -135,11 +135,14 @@ export function AuthProvider(props: AuthProviderProps) {
                         "Content-Type": "application/json",
                     },
                     body: JSON.stringify({
+                        "password": data.password,
+                        "is_superuser": false,
+                        "email": data.email,
                         "first_name": data.first_name,
                         "last_name": data.last_name,
-                        "email": data.email,
-                        "password": data.password,
-                    }),
+                        "is_active": true,
+                        "is_staff": false
+                      }),
                 });
 
                 if (!response.ok) {

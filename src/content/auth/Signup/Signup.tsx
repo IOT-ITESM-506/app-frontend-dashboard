@@ -65,7 +65,11 @@ const SignupForm: React.FC = () => {
             setFormErrors(errors);
         } else {
             setSuccessMessage('Registration successful!');
-            const response = await authContext.registerUser(formData);
+            const response: any = await authContext.registerUser(formData);
+            if(response.ok){
+                const login_response = await authContext.onLogin(formData.email, formData.password);
+                console.log(login_response);
+            }
         }
     };
 
