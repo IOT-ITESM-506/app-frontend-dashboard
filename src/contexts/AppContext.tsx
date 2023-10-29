@@ -10,7 +10,7 @@ export function AppProvider(props: AppProviderProps){
     const { greenhouses } = useContext(AuthContext);
 
     const [selectedGreenhouse, setSelectedGreenhouse] = useState<IGreenhouse>(
-        localStorage.getItem('selectedGreenhouse') ? JSON.parse(localStorage.getItem('selectedGreenhouse') as string) : greenhouses[0]
+        localStorage.getItem('selectedGreenhouse') ? JSON.parse(localStorage.getItem('selectedGreenhouse') as string) : null
     );
     const onChangeSelectedGreenhouse = (greenhouse: IGreenhouse) => {
         setSelectedGreenhouse(greenhouse);

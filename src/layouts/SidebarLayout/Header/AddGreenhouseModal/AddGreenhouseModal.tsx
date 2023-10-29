@@ -4,6 +4,7 @@ import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
+import Alert from '@mui/material/Alert';
 
 interface AddGreenhouseModalProps {
     open: boolean;
@@ -17,7 +18,10 @@ const AddGreenhouseModal: React.FC<AddGreenhouseModalProps> = (props) => {
         location: '',
         size: '',
         description: '',
+        microcontrollerId: '',
     });
+
+    const [isSuccess, setIsSuccess] = useState(false);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -29,8 +33,10 @@ const AddGreenhouseModal: React.FC<AddGreenhouseModalProps> = (props) => {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        console.log('Form submitted:', greenhouseData);
-        handleClose();
+        if (greenhouseData.name && greenhouseData.location && greenhouseData.size) {
+            console.log(greenhouseData)
+            setIsSuccess(true);
+        }
     };
 
     return (
@@ -46,7 +52,7 @@ const AddGreenhouseModal: React.FC<AddGreenhouseModalProps> = (props) => {
                     top: '50%',
                     left: '50%',
                     transform: 'translate(-50%, -50%)',
-                    width: 400,
+                    width: 500,
                     bgcolor: 'white',
                     borderRadius: '8px',
                     boxShadow: 24,
@@ -56,6 +62,7 @@ const AddGreenhouseModal: React.FC<AddGreenhouseModalProps> = (props) => {
                 <Typography id="modal-modal-title" variant="h6" component="h2">
                     Add Greenhouse
                 </Typography>
+
                 <form onSubmit={handleSubmit}>
                     <TextField
                         fullWidth
@@ -92,6 +99,20 @@ const AddGreenhouseModal: React.FC<AddGreenhouseModalProps> = (props) => {
                         value={greenhouseData.description}
                         onChange={handleChange}
                     />
+                    <TextField
+                        fullWidth
+                        margin="normal"
+                        label="Microcontroller ID"
+                        name="microcontrollerId"
+                        value={greenhouseData.microcontrollerId}
+                        onChange={handleChange}
+                        helperText="You can find this ID on the circuit box containing all sensors."
+                    />
+                    {isSuccess && (
+                        <Alert severity="success" sx={{ mt: 0 }}>
+                            Registration completed successfully!
+                        </Alert>
+                    )}
                     <Button type="submit" variant="contained" sx={{ mt: 2, backgroundColor: '#4CAF50', color: 'white' }}>
                         Submit
                     </Button>
