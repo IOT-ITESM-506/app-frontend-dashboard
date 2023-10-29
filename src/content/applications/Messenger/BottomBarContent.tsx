@@ -10,6 +10,7 @@ import {
 } from '@mui/material';
 import AttachFileTwoToneIcon from '@mui/icons-material/AttachFileTwoTone';
 import SendTwoToneIcon from '@mui/icons-material/SendTwoTone';
+import { USER_PROFILE_PICTURE } from 'src/utils/utils';
 
 const MessageInputWrapper = styled(InputBase)(
     ({ theme }) => `
@@ -28,7 +29,7 @@ function BottomBarContent() {
 
     const user = {
         name: 'Catherine Pike',
-        avatar: '/static/images/avatars/1.jpg'
+        avatar: USER_PROFILE_PICTURE
     };
 
     return (

@@ -38,7 +38,7 @@ export function AuthProvider(props: AuthProviderProps) {
             location: 'Mountain View, CO',
             size: 180,
             description: 'A family-owned greenhouse with a focus on flowers and herbs.',
-            logo: '',
+            logo: 'https://images.pexels.com/photos/1093216/pexels-photo-1093216.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
             records: [
                 {
                     timestamp: '2023-02-05T15:45:00',
@@ -108,7 +108,7 @@ export function AuthProvider(props: AuthProviderProps) {
         },
         onLogout: () => {
             setAuthTokens(null);
-            localStorage.removeItem('authTokens');
+            localStorage.clear();
             window.location.href = '/auth/signin/'
         },
         updateToken: async () => {

@@ -1,4 +1,4 @@
-import { useState, SyntheticEvent } from 'react';
+import { useState, SyntheticEvent, useContext } from 'react';
 import {
     Box,
     IconButton,
@@ -18,8 +18,6 @@ import {
     useTheme
 } from '@mui/material';
 import { formatDistance, subMinutes } from 'date-fns';
-import CallTwoToneIcon from '@mui/icons-material/CallTwoTone';
-import VideoCameraFrontTwoToneIcon from '@mui/icons-material/VideoCameraFrontTwoTone';
 import InfoTwoToneIcon from '@mui/icons-material/InfoTwoTone';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import SearchTwoToneIcon from '@mui/icons-material/SearchTwoTone';
@@ -30,6 +28,9 @@ import CancelTwoToneIcon from '@mui/icons-material/CancelTwoTone';
 import BlockTwoToneIcon from '@mui/icons-material/BlockTwoTone';
 import WarningTwoToneIcon from '@mui/icons-material/WarningTwoTone';
 import DescriptionTwoToneIcon from '@mui/icons-material/DescriptionTwoTone';
+
+import { USER_PROFILE_PICTURE } from 'src/utils/utils';
+import { AppContext } from 'src/contexts/AppContext';
 
 const RootWrapper = styled(Box)(
     ({ theme }) => `
@@ -84,6 +85,7 @@ const AccordionSummaryWrapper = styled(AccordionSummary)(
 
 function TopBarContent() {
     const theme = useTheme();
+    const { selectedGreenhouse } = useContext(AppContext);
 
     const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -109,10 +111,10 @@ function TopBarContent() {
                             height: 48
                         }}
                         alt="Zain Baptista"
-                        src="/static/images/avatars/1.jpg"
+                        src={selectedGreenhouse.logo}
                     />
                     <Box ml={1}>
-                        <Typography variant="h4">Zain Baptista</Typography>
+                        <Typography variant="h4">{selectedGreenhouse.name}</Typography>
                         <Typography variant="subtitle1">
                             {formatDistance(subMinutes(new Date(), 8), new Date(), {
                                 addSuffix: true
@@ -161,10 +163,10 @@ function TopBarContent() {
                                 height: theme.spacing(12)
                             }}
                             variant="rounded"
-                            alt="Zain Baptista"
-                            src="/static/images/avatars/1.jpg"
+                            alt="Greenhouse"
+                            src={selectedGreenhouse.logo}
                         />
-                        <Typography variant="h4">Zain Baptista</Typography>
+                        <Typography variant="h4">{selectedGreenhouse.name}</Typography>
                         <Typography variant="subtitle2">
                             Active{' '}
                             {formatDistance(subMinutes(new Date(), 7), new Date(), {

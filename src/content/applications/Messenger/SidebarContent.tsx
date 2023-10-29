@@ -19,30 +19,11 @@ import {
 import SettingsTwoToneIcon from '@mui/icons-material/SettingsTwoTone';
 import SearchTwoToneIcon from '@mui/icons-material/SearchTwoTone';
 import Label from 'src/components/Label';
-import CheckTwoToneIcon from '@mui/icons-material/CheckTwoTone';
 import { AuthContext } from 'src/contexts/AuthContext';
+import { AppContext } from 'src/contexts/AppContext';
+
 import { USER_PROFILE_PICTURE } from 'src/utils/utils';
 import { IGreenhouse } from 'src/types/Greenhouse';
-
-const AvatarSuccess = styled(Avatar)(
-    ({ theme }) => `
-          background-color: ${theme.colors.success.lighter};
-          color: ${theme.colors.success.main};
-          width: ${theme.spacing(8)};
-          height: ${theme.spacing(8)};
-          margin-left: auto;
-          margin-right: auto;
-    `
-);
-
-const MeetingBox = styled(Box)(
-    ({ theme }) => `
-          background-color: ${lighten(theme.colors.alpha.black[10], 0.5)};
-          margin: ${theme.spacing(2)} 0;
-          border-radius: ${theme.general.borderRadius};
-          padding: ${theme.spacing(2)};
-    `
-);
 
 const RootWrapper = styled(Box)(
     ({ theme }) => `
@@ -89,6 +70,7 @@ const TabsContainerWrapper = styled(Box)(
 
 function SidebarContent() {
     const { user, greenhouses } = useContext(AuthContext);
+    const { selectedGreenhouse, onChangeSelectedGreenhouse } = useContext(AppContext);
 
     const user_data = {
         name: user?.first_name,
@@ -201,7 +183,7 @@ function SidebarContent() {
                     <List disablePadding component="div">
                         {greenhouses.map((greenhouse: IGreenhouse) => {
                             return (
-                                <ListItemWrapper selected key={greenhouse.name}>
+                                <ListItemWrapper selected key={greenhouse.name} onClick={() => onChangeSelectedGreenhouse(greenhouse)}>
                                     <ListItemAvatar>
                                         <Avatar src={greenhouse.logo} />
                                     </ListItemAvatar>
@@ -230,7 +212,7 @@ function SidebarContent() {
                     <List disablePadding component="div">
                         <ListItemWrapper>
                             <ListItemAvatar>
-                                <Avatar src="/static/images/avatars/1.jpg" />
+                                <Avatar src={USER_PROFILE_PICTURE} />
                             </ListItemAvatar>
                             <ListItemText
                                 sx={{

@@ -1,12 +1,13 @@
 import { Typography } from '@mui/material';
 import { useContext } from 'react';
 import { AuthContext } from 'src/contexts/AuthContext';
+import { USER_PROFILE_PICTURE } from 'src/utils/utils';
 
 function PageHeader() {
     const authContext = useContext(AuthContext)
     const user = {
         name: authContext.user?.first_name + ' ' + authContext.user?.last_name,
-        avatar: '/static/images/avatars/1.jpg'
+        avatar: USER_PROFILE_PICTURE
     };
 
     return (

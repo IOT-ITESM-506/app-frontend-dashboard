@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
 
 import { Helmet } from 'react-helmet-async';
 
@@ -9,6 +9,8 @@ import ChatContent from './ChatContent';
 import MenuTwoToneIcon from '@mui/icons-material/MenuTwoTone';
 
 import Scrollbar from 'src/components/Scrollbar';
+import { AuthContext } from 'src/contexts/AuthContext';
+import { AppContext } from 'src/contexts/AppContext';
 
 import {
     Box,
@@ -80,6 +82,13 @@ function ApplicationsMessenger() {
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
     };
+
+    const { greenhouses } = useContext(AuthContext);
+    const { onChangeSelectedGreenhouse } = useContext(AppContext);
+
+    useEffect(() => {
+        onChangeSelectedGreenhouse(greenhouses[0]);
+    },[])
 
     return (
         <>

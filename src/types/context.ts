@@ -19,6 +19,16 @@ interface AuthContextType {
     greenhouses: any;
 }
 
+interface AppContextType {
+    onChangeSelectedGreenhouse: (greenhouse: any) => void;
+    selectedGreenhouse: any;
+}
+
+interface AppProviderProps {
+    children: ReactNode;
+}
+
+
 interface AuthProviderProps {
     children: ReactNode;
 }
@@ -27,4 +37,6 @@ export type {
     AuthContextType,
     AuthTokens,
     AuthProviderProps,
+    AppContextType,
+    AppProviderProps
 }

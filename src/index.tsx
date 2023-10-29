@@ -9,15 +9,18 @@ import * as serviceWorker from 'src/serviceWorker';
 
 import './index.css'
 import { AuthProvider } from 'src/contexts/AuthContext';
+import { AppProvider } from './contexts/AppContext';
 
 ReactDOM.render(
     <HelmetProvider>
         <AuthProvider>
-            <SidebarProvider>
-                <BrowserRouter>
-                    <App />
-                </BrowserRouter>
-            </SidebarProvider>
+            <AppProvider>
+                <SidebarProvider>
+                    <BrowserRouter>
+                        <App />
+                    </BrowserRouter>
+                </SidebarProvider>
+            </AppProvider>
         </AuthProvider>
     </HelmetProvider>,
     document.getElementById('root')

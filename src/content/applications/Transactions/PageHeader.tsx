@@ -1,11 +1,12 @@
 import { Typography, Button, Grid } from '@mui/material';
 
 import AddTwoToneIcon from '@mui/icons-material/AddTwoTone';
+import { USER_PROFILE_PICTURE } from 'src/utils/utils';
 
 function PageHeader() {
     const user = {
         name: 'Catherine Pike',
-        avatar: '/static/images/avatars/1.jpg'
+        avatar: USER_PROFILE_PICTURE
     };
     return (
         <Grid container justifyContent="space-between" alignItems="center">

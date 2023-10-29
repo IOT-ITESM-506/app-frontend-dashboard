@@ -1,5 +1,5 @@
 import { Box, Avatar, Typography, Card, styled, Divider } from '@mui/material';
-
+import { useContext } from 'react';
 import {
     formatDistance,
     format,
@@ -8,6 +8,8 @@ import {
     subMinutes
 } from 'date-fns';
 import ScheduleTwoToneIcon from '@mui/icons-material/ScheduleTwoTone';
+import { USER_PROFILE_PICTURE } from 'src/utils/utils';
+import { AppContext } from 'src/contexts/AppContext';
 
 const DividerWrapper = styled(Divider)(
     ({ theme }) => `
@@ -46,9 +48,11 @@ const CardWrapperSecondary = styled(Card)(
 );
 
 function ChatContent() {
+    const { selectedGreenhouse } = useContext(AppContext);
+
     const user = {
         name: 'Catherine Pike',
-        avatar: '/static/images/avatars/1.jpg'
+        avatar: USER_PROFILE_PICTURE
     };
 
     return (
@@ -70,7 +74,7 @@ function ChatContent() {
                         height: 50
                     }}
                     alt="Zain Baptista"
-                    src="/static/images/avatars/2.jpg"
+                    src={selectedGreenhouse?.logo}
                 />
                 <Box
                     display="flex"
@@ -217,7 +221,7 @@ function ChatContent() {
                         height: 50
                     }}
                     alt="Zain Baptista"
-                    src="/static/images/avatars/2.jpg"
+                    src={selectedGreenhouse?.logo}
                 />
                 <Box
                     display="flex"
