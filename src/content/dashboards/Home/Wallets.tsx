@@ -99,7 +99,7 @@ function Wallets() {
                 </Button>
             </Box>
             <Grid container spacing={3}>
-                {greenhouses.map((greenhouse: IGreenhouse) => {
+                {greenhouses.slice(0, 3).map((greenhouse: IGreenhouse) => {
                     return (
                         <Grid key={greenhouse.name} xs={12} sm={6} md={3} item>
                             <Card
