@@ -11,6 +11,11 @@ interface AuthContextType {
     updateToken: () => void;
     getUserData: () => void;
     registerUser: (data: any) => void;
+
+    getGreenhouses: () => void;
+    registerGreenhouse: (data: any) => void;
+    
+
     authTokens?: AuthTokens;
     user?: any;
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
@@ -6,19 +6,26 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Alert from '@mui/material/Alert';
 
+import { AuthContext } from 'src/contexts/AuthContext';
+
+
 interface AddGreenhouseModalProps {
     open: boolean;
     handleClose: () => void;
 }
 
 const AddGreenhouseModal: React.FC<AddGreenhouseModalProps> = (props) => {
+    const { registerGreenhouse, user } = useContext(AuthContext);
+
     const { open, handleClose } = props;
     const [greenhouseData, setGreenhouseData] = useState({
         name: '',
         location: '',
         size: '',
-        description: '',
+        greenhouse_description: '',
+        logo: 'https://previews.123rf.com/images/sejalanart/sejalanart2108/sejalanart210800032/173258299-greenhouse-logo-template-design-nature-property-vector-illustration.jpg?fj=1',
         microcontrollerId: '',
+        user_id: user.id,
     });
 
     const [isSuccess, setIsSuccess] = useState(false);
@@ -31,11 +38,13 @@ const AddGreenhouseModal: React.FC<AddGreenhouseModalProps> = (props) => {
         }));
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async(e: React.FormEvent) => {
         e.preventDefault();
         if (greenhouseData.name && greenhouseData.location && greenhouseData.size) {
-            console.log(greenhouseData)
-            setIsSuccess(true);
+            const response: any = await registerGreenhouse(greenhouseData);
+            if (response.status === 201) {
+                setIsSuccess(true);
+            }
         }
     };
 
@@ -93,10 +102,10 @@ const AddGreenhouseModal: React.FC<AddGreenhouseModalProps> = (props) => {
                         fullWidth
                         margin="normal"
                         label="Greenhouse Description"
-                        name="description"
+                        name="greenhouse_description"
                         multiline
                         rows={4}
-                        value={greenhouseData.description}
+                        value={greenhouseData.greenhouse_description}
                         onChange={handleChange}
                     />
                     <TextField

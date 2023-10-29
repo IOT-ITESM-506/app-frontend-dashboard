@@ -18,7 +18,7 @@ const Loader = (Component) => (props) =>
 
 // Dashboards
 
-const Crypto = Loader(lazy(() => import('src/content/dashboards/Crypto')));
+const Crypto = Loader(lazy(() => import('src/content/dashboards/Home')));
 
 // Applications
 

@@ -13,7 +13,7 @@ export function AuthProvider(props: AuthProviderProps) {
     const [user, setUser] = useState();
     const [navbarIsActive, setNavbarIsActive] = useState<boolean>(false);
 
-    const [greenhouses, setGreenhouses] = useState<IGreenhouse[]>();
+    const [greenhouses, setGreenhouses] = useState<IGreenhouse[]>([]);
 
     const authContext: AuthContextType = {
         onLogin: async (email: string, password: string) => {
@@ -66,13 +66,8 @@ export function AuthProvider(props: AuthProviderProps) {
                         "Content-Type": "application/json",
                     },
                     body: JSON.stringify({
-                        "password": data.password,
-                        "is_superuser": false,
-                        "email": data.email,
-                        "first_name": data.first_name,
-                        "last_name": data.last_name,
-                        "is_active": true,
-                        "is_staff": false
+                        "password": data.password, "is_superuser": false, "email": data.email,
+                        "first_name": data.first_name, "last_name": data.last_name, "is_active": true, "is_staff": false
                       }),
                 });
 
@@ -102,6 +97,52 @@ export function AuthProvider(props: AuthProviderProps) {
                 throw new Error(`Error! status: ${err}`);
             }
         },
+        getGreenhouses: async () => {   
+            try {
+                const response = await fetch(`${BACKEND_URL}/api/greenhouse/`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${authTokens.access}`,
+                    },
+                });
+                if (!response.ok) {
+                    throw new Error(`Error! status: ${response.status}`);
+                }
+                const result = await response.json();
+                setGreenhouses(result);
+            } catch (err) {
+                throw new Error(`Error! status: ${err}`);
+            }
+        },
+        registerGreenhouse: async(data: any) => {
+            try {
+                const response = await fetch(`${BACKEND_URL}/api/greenhouse/`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        'Authorization': `Bearer ${authTokens.access}`,
+                    },
+                    body: JSON.stringify({
+                        "name": data.name,
+                        "location": data.location,
+                        "size": data.size,
+                        "greenhouse_description": data.greenhouse_description,
+                        "logo": data.logo,
+                        "is_active": true,
+                        "sensor_record_circuit_id": data.microcontrollerId,
+                        "user": data.user_id
+                      }),
+                });
+
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                return response;
+            } catch (error) {
+                throw new Error(`Error! status: ${error}`);
+            }
+        },
         authTokens,
         user,
         navbarIsActive, setNavbarIsActive,
@@ -116,6 +157,8 @@ export function AuthProvider(props: AuthProviderProps) {
         if (authTokens) {
             authContext.getUserData();
             authContext.updateToken();
+
+            authContext.getGreenhouses();
 
             const interval = setInterval(renewToken, 240000);
 

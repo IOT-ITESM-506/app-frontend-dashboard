@@ -30,14 +30,14 @@ function createData(
     name: string,
     location: string,
     size: number,
-    description: string,
+    greenhouse_description: string,
     records: any[]
 ) {
     return {
         name,
         location,
         size,
-        description,
+        greenhouse_description,
         records,
     };
 }
@@ -63,9 +63,9 @@ function Row(props: { row: ReturnType<typeof createData> }) {
                 </TableCell>
                 <TableCell align="right">{row.location}</TableCell>
                 <TableCell align="right">{row.size}</TableCell>
-                <TableCell align="right">{row.description}</TableCell>
+                <TableCell align="right">{row.greenhouse_description}</TableCell>
             </TableRow>
-            <TableRow>
+            {/* <TableRow>
                 <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
                     <Collapse in={open} timeout="auto" unmountOnExit>
                         <Box sx={{ margin: 1 }}>
@@ -103,7 +103,7 @@ function Row(props: { row: ReturnType<typeof createData> }) {
                         </Box>
                     </Collapse>
                 </TableCell>
-            </TableRow>
+            </TableRow> */}
         </>
     );
 }
