@@ -46,7 +46,7 @@ const mockRecords: IRecord[] = [
         nutrient_level: 220,
         greenhouse: 'Greenhouse B',
         timestamp: '2023-10-31T12:30:00',
-        sensor_record_circuit_id: '123e4567-e89b-12d3-a456-426614174001',
+        sensor_record_circuit_id: '123e4567-e89b-12d3-a456-42661417400',
     },
     {
         temperature: 28,
@@ -58,7 +58,7 @@ const mockRecords: IRecord[] = [
         nutrient_level: 220,
         greenhouse: 'Greenhouse B',
         timestamp: '2023-10-31T12:30:00',
-        sensor_record_circuit_id: '123e4567-e89b-12d3-a456-426614174001',
+        sensor_record_circuit_id: '123e4567-e89b-12d3-a456-42661417400',
     },
 ];
 

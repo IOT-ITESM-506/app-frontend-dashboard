@@ -115,6 +115,25 @@ export function AuthProvider(props: AuthProviderProps) {
                 throw new Error(`Error! status: ${err}`);
             }
         },
+        getGreenhouseByName: async (name: string) => {
+            try {
+                const response = await fetch(`${BACKEND_URL}/api/greenhouse/${name}/`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${authTokens.access}`,
+                    },
+                });
+                if (!response.ok) {
+                    throw new Error(`Error! status: ${response.status}`);
+                }
+                const result = await response.json();
+                return result;
+            }
+            catch (err) {
+                throw new Error(`Error! status: ${err}`);
+            }
+        },
         registerGreenhouse: async(data: any) => {
             try {
                 const response = await fetch(`${BACKEND_URL}/api/greenhouse/`, {

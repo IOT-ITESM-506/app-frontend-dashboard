@@ -86,10 +86,6 @@ function ApplicationsMessenger() {
     const { greenhouses } = useContext(AuthContext);
     const { onChangeSelectedGreenhouse } = useContext(AppContext);
 
-    useEffect(() => {
-        onChangeSelectedGreenhouse(greenhouses[0]);
-    },[])
-
     return (
         <>
             <Helmet>
@@ -119,7 +115,7 @@ function ApplicationsMessenger() {
                     </Scrollbar>
                 </Sidebar>
                 <ChatWindow>
-                    <ChatTopBar
+                    {/* <ChatTopBar
                         sx={{
                             display: { xs: 'flex', lg: 'inline-block' }
                         }}
@@ -136,7 +132,7 @@ function ApplicationsMessenger() {
                             <MenuTwoToneIcon />
                         </IconButtonToggle>
                         <TopBarContent />
-                    </ChatTopBar>
+                    </ChatTopBar> */}
                     <Box flex={1}>
                         <Scrollbar>
                             <ChatContent />

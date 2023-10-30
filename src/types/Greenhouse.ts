@@ -6,9 +6,9 @@ interface IRecord  {
     soil_moisture: number;
     pH: number;
     nutrient_level: number;
+    timestamp: string;
 
     greenhouse: string;
-    timestamp: string;
     sensor_record_circuit_id: string;
 };
 
@@ -21,11 +21,11 @@ interface IGreenhouse {
     logo: string;
     is_active: boolean;
     sensor_record_circuit_id: string;
-    user: string;
+    user: string;  
 };
 
 interface IGreenhouseWithRecords extends IGreenhouse {
-    records: IRecord[];
+    sensor_records: IRecord[];
 }
 
 

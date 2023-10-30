@@ -13,6 +13,7 @@ interface AuthContextType {
     registerUser: (data: any) => void;
 
     getGreenhouses: () => void;
+    getGreenhouseByName: (name: string) => Promise<any>;
     registerGreenhouse: (data: any) => void;
     
 

@@ -1,4 +1,4 @@
-import { forwardRef, Ref, useState, ReactElement, ChangeEvent } from 'react';
+import React, { forwardRef, Ref, useState, ReactElement, ChangeEvent, useEffect, useContext } from 'react';
 import {
     Avatar,
     Link,
@@ -27,6 +27,7 @@ import SearchTwoToneIcon from '@mui/icons-material/SearchTwoTone';
 import FindInPageTwoToneIcon from '@mui/icons-material/FindInPageTwoTone';
 
 import ChevronRightTwoToneIcon from '@mui/icons-material/ChevronRightTwoTone';
+import { AuthContext } from 'src/contexts/AuthContext';
 
 const Transition = forwardRef(function Transition(
     props: TransitionProps & { children: ReactElement<any, any> },
@@ -65,6 +66,8 @@ const DialogTitleWrapper = styled(DialogTitle)(
 );
 
 function HeaderSearch() {
+    const { getGreenhouseByName } = useContext(AuthContext)
+
     const [openSearchResults, setOpenSearchResults] = useState(false);
     const [searchValue, setSearchValue] = useState('');
 
@@ -90,9 +93,20 @@ function HeaderSearch() {
         setOpen(false);
     };
 
+    const [greenhousesFound, setGreenhousesFound] = useState([]);
+
+    useEffect(() => {
+        if (searchValue) {
+            getGreenhouseByName(searchValue)
+                .then((response: any) => {
+                    setGreenhousesFound(response)
+                })
+        }
+    },[searchValue])
+
     return (
         <>
-            <Tooltip arrow title="Search">
+            <Tooltip arrow title="Search Greenhouses">
                 <IconButton color="primary" onClick={handleClickOpen}>
                     <SearchTwoToneIcon />
                 </IconButton>
@@ -119,9 +133,9 @@ function HeaderSearch() {
                                 </InputAdornment>
                             )
                         }}
-                        placeholder="Search terms here..."
+                        placeholder="Search "
                         fullWidth
-                        label="Search"
+                        label="Search Greenhouses"
                     />
                 </DialogTitleWrapper>
                 <Divider />
@@ -147,123 +161,51 @@ function HeaderSearch() {
                                 Advanced search
                             </Link>
                         </Box>
-                        <Divider sx={{ my: 1 }} />
                         <List disablePadding>
-                            <ListItem button>
-                                <Hidden smDown>
-                                    <ListItemAvatar>
-                                        <Avatar
-                                            sx={{
-                                                background: (theme: Theme) =>
-                                                    theme.palette.secondary.main
-                                            }}
-                                        >
-                                            <FindInPageTwoToneIcon />
-                                        </Avatar>
-                                    </ListItemAvatar>
-                                </Hidden>
-                                <Box flex="1">
-                                    <Box display="flex" justifyContent="space-between">
-                                        <Link
-                                            href="#"
-                                            underline="hover"
-                                            sx={{ fontWeight: 'bold' }}
-                                            variant="body2"
-                                        >
-                                            Dashboard for Healthcare Platform
-                                        </Link>
-                                    </Box>
-                                    <Typography
-                                        component="span"
-                                        variant="body2"
-                                        sx={{
-                                            color: (theme: Theme) =>
-                                                lighten(theme.palette.secondary.main, 0.5)
-                                        }}
-                                    >
-                                        This page contains all the necessary information for
-                                        managing all hospital staff.
-                                    </Typography>
-                                </Box>
-                                <ChevronRightTwoToneIcon />
-                            </ListItem>
-                            <Divider sx={{ my: 1 }} component="li" />
-                            <ListItem button>
-                                <Hidden smDown>
-                                    <ListItemAvatar>
-                                        <Avatar
-                                            sx={{
-                                                background: (theme: Theme) =>
-                                                    theme.palette.secondary.main
-                                            }}
-                                        >
-                                            <FindInPageTwoToneIcon />
-                                        </Avatar>
-                                    </ListItemAvatar>
-                                </Hidden>
-                                <Box flex="1">
-                                    <Box display="flex" justifyContent="space-between">
-                                        <Link
-                                            href="#"
-                                            underline="hover"
-                                            sx={{ fontWeight: 'bold' }}
-                                            variant="body2"
-                                        >
-                                            Example Projects Application
-                                        </Link>
-                                    </Box>
-                                    <Typography
-                                        component="span"
-                                        variant="body2"
-                                        sx={{
-                                            color: (theme: Theme) =>
-                                                lighten(theme.palette.secondary.main, 0.5)
-                                        }}
-                                    >
-                                        This is yet another search result pointing to a app page.
-                                    </Typography>
-                                </Box>
-                                <ChevronRightTwoToneIcon />
-                            </ListItem>
-                            <Divider sx={{ my: 1 }} component="li" />
-                            <ListItem button>
-                                <Hidden smDown>
-                                    <ListItemAvatar>
-                                        <Avatar
-                                            sx={{
-                                                background: (theme: Theme) =>
-                                                    theme.palette.secondary.main
-                                            }}
-                                        >
-                                            <FindInPageTwoToneIcon />
-                                        </Avatar>
-                                    </ListItemAvatar>
-                                </Hidden>
-                                <Box flex="1">
-                                    <Box display="flex" justifyContent="space-between">
-                                        <Link
-                                            href="#"
-                                            underline="hover"
-                                            sx={{ fontWeight: 'bold' }}
-                                            variant="body2"
-                                        >
-                                            Search Results Page
-                                        </Link>
-                                    </Box>
-                                    <Typography
-                                        component="span"
-                                        variant="body2"
-                                        sx={{
-                                            color: (theme: Theme) =>
-                                                lighten(theme.palette.secondary.main, 0.5)
-                                        }}
-                                    >
-                                        Choose if you would like to show or not this typography
-                                        section here...
-                                    </Typography>
-                                </Box>
-                                <ChevronRightTwoToneIcon />
-                            </ListItem>
+                            {greenhousesFound.slice(0, 5).map((greenhouse: any) => {
+                                return (
+                                    <React.Fragment key={greenhouse.id}>
+                                        <Divider sx={{ my: 1 }} component="li" />
+                                        <ListItem button>
+                                            <Hidden smDown>
+                                                <ListItemAvatar>
+                                                    <Avatar
+                                                        sx={{
+                                                            background: (theme: Theme) =>
+                                                                theme.palette.secondary.main
+                                                        }}
+                                                    >
+                                                        <FindInPageTwoToneIcon />
+                                                    </Avatar>
+                                                </ListItemAvatar>
+                                            </Hidden>
+                                            <Box flex="1">
+                                                <Box display="flex" justifyContent="space-between">
+                                                    <Link
+                                                        href="#"
+                                                        underline="hover"
+                                                        sx={{ fontWeight: 'bold' }}
+                                                        variant="body2"
+                                                    >
+                                                        {greenhouse.name}
+                                                    </Link>
+                                                </Box>
+                                                <Typography
+                                                    component="span"
+                                                    variant="body2"
+                                                    sx={{
+                                                        color: (theme: Theme) =>
+                                                            lighten(theme.palette.secondary.main, 0.5)
+                                                    }}
+                                                >
+                                                    {greenhouse.greenhouse_description}
+                                                </Typography>
+                                            </Box>
+                                            <ChevronRightTwoToneIcon />
+                                        </ListItem>
+                                    </React.Fragment>
+                                )
+                            })}
                         </List>
                         <Divider sx={{ mt: 1, mb: 2 }} />
                         <Box sx={{ textAlign: 'center' }}>

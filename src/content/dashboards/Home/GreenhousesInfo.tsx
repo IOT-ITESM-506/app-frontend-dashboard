@@ -18,14 +18,14 @@ function createData(
     location: string,
     size: number,
     greenhouse_description: string,
-    records: any[]
+    sensor_records: any[]
 ) {
     return {
         name,
         location,
         size,
         greenhouse_description,
-        records,
+        sensor_records,
     };
 }
 
@@ -48,8 +48,8 @@ function Row(props: { row: ReturnType<typeof createData> }) {
                 <TableCell component="th" scope="row">
                     {row.name}
                 </TableCell>
-                <TableCell align="right">{row.location}</TableCell>
-                <TableCell align="right">{row.size}</TableCell>
+                <TableCell align="left">{row.location}</TableCell>
+                <TableCell align="left">{row.size}</TableCell>
                 <TableCell align="right">{row.greenhouse_description}</TableCell>
             </TableRow>
             <TableRow>
@@ -73,7 +73,7 @@ function Row(props: { row: ReturnType<typeof createData> }) {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {row.records.map((record: any) => (
+                                    {row.sensor_records.map((record: any) => (
                                         <TableRow key={record.timestamp}>
                                             <TableCell>{record.timestamp}</TableCell>
                                             <TableCell>{record.temperature}</TableCell>
@@ -97,13 +97,6 @@ function Row(props: { row: ReturnType<typeof createData> }) {
 
 function GreenhousesInfo() {
     const { greenhouses } = useContext(AuthContext)
-    const [mergedGreenhouses, setMergedGreenhouses] = useState<any>([])
-
-
-    useEffect(() => {
-        const data = mergeGreenhousesAndRecords(mockGreenhouses, mockRecords);
-        setMergedGreenhouses(data)
-    },[])
  
     return (
         <GreenCard>
@@ -119,13 +112,13 @@ function GreenhousesInfo() {
                                     <TableRow>
                                         <TableCell />
                                         <TableCell>Greenhouse Name</TableCell>
-                                        <TableCell align="right">Location</TableCell>
-                                        <TableCell align="right">Size (sqm)</TableCell>
+                                        <TableCell align="left">Location</TableCell>
+                                        <TableCell align="left">Size (sqm)</TableCell>
                                         <TableCell align="right">Description</TableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {mergedGreenhouses.map((greenhouse) => (
+                                    {greenhouses.map((greenhouse) => (
                                         <Row key={greenhouse.name} row={greenhouse} />
                                     ))}
                                 </TableBody>

@@ -8,7 +8,7 @@ function mergeGreenhousesAndRecords(greenhouses: IGreenhouse[], records: IRecord
         const matchingRecords = records.filter((record) => record.sensor_record_circuit_id === greenhouse.sensor_record_circuit_id);
         const mergedGreenhouse: IGreenhouseWithRecords = {
             ...greenhouse,
-            records: matchingRecords,
+            sensor_records: matchingRecords,
         };
         mergedGreenhouses.push(mergedGreenhouse);
     })
