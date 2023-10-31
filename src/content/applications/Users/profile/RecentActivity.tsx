@@ -10,7 +10,6 @@ import {
 } from '@mui/material';
 
 import ShoppingBagTwoToneIcon from '@mui/icons-material/ShoppingBagTwoTone';
-import FavoriteTwoToneIcon from '@mui/icons-material/FavoriteTwoTone';
 import StarTwoToneIcon from '@mui/icons-material/StarTwoTone';
 
 const AvatarPrimary = styled(Avatar)(
@@ -56,37 +55,6 @@ function RecentActivity() {
                                 Failed
                             </Typography>
                             <Typography variant="h3">8</Typography>
-                        </Box>
-                    </Box>
-                </Box>
-            </Box>
-            <Divider />
-            <Box px={2} py={3} display="flex" alignItems="flex-start">
-                <AvatarPrimary>
-                    <FavoriteTwoToneIcon />
-                </AvatarPrimary>
-                <Box pl={2} flex={1}>
-                    <Typography variant="h4">Actuators</Typography>
-                    <Box pt={1} display="flex">
-                        <Box pr={8}>
-                            <Typography
-                                gutterBottom
-                                variant="caption"
-                                sx={{ fontSize: `${theme.typography.pxToRem(12)}` }}
-                            >
-                                Products
-                            </Typography>
-                            <Typography variant="h3">64</Typography>
-                        </Box>
-                        <Box>
-                            <Typography
-                                gutterBottom
-                                variant="caption"
-                                sx={{ fontSize: `${theme.typography.pxToRem(12)}` }}
-                            >
-                                Lists
-                            </Typography>
-                            <Typography variant="h3">15</Typography>
                         </Box>
                     </Box>
                 </Box>

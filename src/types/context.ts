@@ -13,6 +13,7 @@ interface AuthContextType {
     registerUser: (data: any) => void;
 
     getGreenhouses: () => void;
+    getAlerts: () => void;
     getGreenhouseByName: (name: string) => Promise<any>;
     registerGreenhouse: (data: any) => void;
     
@@ -23,6 +24,7 @@ interface AuthContextType {
     navbarIsActive: boolean;
     setNavbarIsActive: (value: boolean) => void;
     greenhouses: any;
+    alerts: any;
 }
 
 interface AppContextType {

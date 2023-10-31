@@ -201,7 +201,7 @@ function SidebarMenu() {
                                     Home
                                 </Button>
                             </ListItem>
-                            <ListItem component="div">
+                            {/* <ListItem component="div">
                                 <Button
                                     disableRipple
                                     component={RouterLink}
@@ -211,7 +211,7 @@ function SidebarMenu() {
                                 >
                                     Notifications
                                 </Button>
-                            </ListItem>
+                            </ListItem> */}
                         </List>
                     </SubMenuWrapper>
                 </List>
