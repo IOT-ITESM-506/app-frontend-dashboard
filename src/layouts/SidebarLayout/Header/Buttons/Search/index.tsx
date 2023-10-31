@@ -28,6 +28,7 @@ import FindInPageTwoToneIcon from '@mui/icons-material/FindInPageTwoTone';
 
 import ChevronRightTwoToneIcon from '@mui/icons-material/ChevronRightTwoTone';
 import { AuthContext } from 'src/contexts/AuthContext';
+import GreenhouseBodyModal from 'src/components/Modal/GreenhouseBodyModal';
 
 const Transition = forwardRef(function Transition(
     props: TransitionProps & { children: ReactElement<any, any> },
@@ -160,6 +161,8 @@ function HeaderSearch() {
                             <Link href="#" variant="body2" underline="hover">
                                 Advanced search
                             </Link>
+
+                            <GreenhouseBodyModal/>
                         </Box>
                         <List disablePadding>
                             {greenhousesFound.slice(0, 5).map((greenhouse: any) => {
