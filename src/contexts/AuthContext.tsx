@@ -10,7 +10,7 @@ export const AuthContext = createContext<AuthContextType | null>(null);
 
 export function AuthProvider(props: AuthProviderProps) {
     const [authTokens, setAuthTokens] = useState(localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens') as string) : null);
-    const [user, setUser] = useState();
+    const [user, setUser] = useState(null);
     const [navbarIsActive, setNavbarIsActive] = useState<boolean>(false);
 
     const [greenhouses, setGreenhouses] = useState<IGreenhouse[]>([]);
@@ -68,7 +68,7 @@ export function AuthProvider(props: AuthProviderProps) {
                     },
                     body: JSON.stringify({
                         "password": data.password, "is_superuser": false, "email": data.email,
-                        "first_name": data.first_name, "last_name": data.last_name, "is_active": true, "is_staff": false
+                        "first_name": data.first_name, "last_name": data.last_name, "is_active": true, "is_staff": true
                     }),
                 });
 
@@ -100,7 +100,7 @@ export function AuthProvider(props: AuthProviderProps) {
         },
         getGreenhouses: async () => {
             try {
-                const response = await fetch(`${BACKEND_URL}/api/greenhouse/`, {
+                const response = await fetch(`${BACKEND_URL}/api/greenhouse/?user=797066f6-53a6-4240-ae69-a887150d2e68`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -169,7 +169,7 @@ export function AuthProvider(props: AuthProviderProps) {
                         "greenhouse_description": data.greenhouse_description,
                         "logo": data.logo,
                         "is_active": true,
-                        "sensor_record_circuit_id": data.microcontrollerId,
+                        "microcontroller_mac_address": data.microcontroller_mac_address,
                         "user": data.user_id
                     }),
                 });

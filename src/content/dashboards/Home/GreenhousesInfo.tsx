@@ -66,10 +66,6 @@ function Row(props: { row: ReturnType<typeof createData> }) {
                                         <TableCell>Temperature</TableCell>
                                         <TableCell>Humidity</TableCell>
                                         <TableCell>Luminosity</TableCell>
-                                        <TableCell>CO2 Level</TableCell>
-                                        <TableCell>Soil Moisture</TableCell>
-                                        <TableCell>pH</TableCell>
-                                        <TableCell>Nutrient Level</TableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
@@ -79,10 +75,6 @@ function Row(props: { row: ReturnType<typeof createData> }) {
                                             <TableCell>{record.temperature}</TableCell>
                                             <TableCell>{record.humidity}</TableCell>
                                             <TableCell>{record.luminosity}</TableCell>
-                                            <TableCell>{record.CO2_level}</TableCell>
-                                            <TableCell>{record.soil_moisture}</TableCell>
-                                            <TableCell>{record.pH || '-'}</TableCell>
-                                            <TableCell>{record.nutrient_level || '-'}</TableCell>
                                         </TableRow>
                                     ))}
                                 </TableBody>

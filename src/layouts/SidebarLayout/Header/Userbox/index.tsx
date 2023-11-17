@@ -60,7 +60,7 @@ function HeaderUserbox() {
     const user = {
         name: authContext.user?.first_name,
         avatar: USER_PROFILE_PICTURE,
-        jobtitle: 'Project Manager'
+        jobtitle: authContext.user?.email.split('@')[0]
     };
 
     const [isOpen, setOpen] = useState<boolean>(false);
@@ -115,10 +115,6 @@ function HeaderUserbox() {
                     <ListItem button to="/management/profile/details" component={NavLink}>
                         <AccountBoxTwoToneIcon fontSize="small" />
                         <ListItemText primary="My Profile" />
-                    </ListItem>
-                    <ListItem button to="/dashboards/messenger" component={NavLink}>
-                        <InboxTwoToneIcon fontSize="small" />
-                        <ListItemText primary="Messenger" />
                     </ListItem>
                     <ListItem
                         button

@@ -24,7 +24,7 @@ const AddGreenhouseModal: React.FC<AddGreenhouseModalProps> = (props) => {
         size: '',
         greenhouse_description: '',
         logo: 'https://previews.123rf.com/images/sejalanart/sejalanart2108/sejalanart210800032/173258299-greenhouse-logo-template-design-nature-property-vector-illustration.jpg?fj=1',
-        microcontrollerId: '',
+        microcontroller_mac_address: '',
         user_id: user.id,
     });
 
@@ -84,7 +84,7 @@ const AddGreenhouseModal: React.FC<AddGreenhouseModalProps> = (props) => {
                     <TextField
                         fullWidth
                         margin="normal"
-                        label="Location"
+                        label="Location (City, Country)"
                         name="location"
                         value={greenhouseData.location}
                         onChange={handleChange}
@@ -92,7 +92,7 @@ const AddGreenhouseModal: React.FC<AddGreenhouseModalProps> = (props) => {
                     <TextField
                         fullWidth
                         margin="normal"
-                        label="Size"
+                        label="Size (m²)"
                         name="size"
                         type="number"
                         value={greenhouseData.size}
@@ -101,7 +101,7 @@ const AddGreenhouseModal: React.FC<AddGreenhouseModalProps> = (props) => {
                     <TextField
                         fullWidth
                         margin="normal"
-                        label="Greenhouse Description"
+                        label="Greenhouse Description (optional)"
                         name="greenhouse_description"
                         multiline
                         rows={4}
@@ -111,9 +111,9 @@ const AddGreenhouseModal: React.FC<AddGreenhouseModalProps> = (props) => {
                     <TextField
                         fullWidth
                         margin="normal"
-                        label="Microcontroller ID"
-                        name="microcontrollerId"
-                        value={greenhouseData.microcontrollerId}
+                        label="Microcontroller Mac Address"
+                        name="microcontroller_mac_address"
+                        value={greenhouseData.microcontroller_mac_address}
                         onChange={handleChange}
                         helperText="You can find this ID on the circuit box containing all sensors."
                     />
