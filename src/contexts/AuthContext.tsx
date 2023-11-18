@@ -98,9 +98,9 @@ export function AuthProvider(props: AuthProviderProps) {
                 throw new Error(`Error! status: ${err}`);
             }
         },
-        getGreenhouses: async () => {
+        getGreenhouses: async (user_id: string) => {
             try {
-                const response = await fetch(`${BACKEND_URL}/api/greenhouse/?user=797066f6-53a6-4240-ae69-a887150d2e68`, {
+                const response = await fetch(`${BACKEND_URL}/api/greenhouse/?user=${user_id}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -198,16 +198,13 @@ export function AuthProvider(props: AuthProviderProps) {
             authContext.getUserData();
             authContext.updateToken();
 
-            authContext.getGreenhouses();
-            authContext.getAlerts();
-
             const interval = setInterval(renewToken, 240000);
 
             return () => {
                 clearInterval(interval);
             };
         }
-    }, []);
+    },[]);
 
     return (
         <AuthContext.Provider value={authContext}>

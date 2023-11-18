@@ -14,7 +14,17 @@ import NotFoundPage from 'src/content/notFound/NotFoundPage';
 import { AuthContext } from 'src/contexts/AuthContext';
 
 function DashboardHome() {
-    const { greenhouses } = useContext(AuthContext);
+    const { greenhouses, getGreenhouses, user } = useContext(AuthContext);
+
+    useEffect(() => {
+        if (user) {
+            getGreenhouses(user.id)
+                .then((result) => {
+                    console.log(result);
+                });
+        }
+    }, [user]);
+
 
     return (
         <>
