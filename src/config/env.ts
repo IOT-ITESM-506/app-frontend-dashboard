@@ -1,1 +1,1 @@
-export const BACKEND_URL = 'http://ec2-34-229-251-207.compute-1.amazonaws.com:8000';
+export const BACKEND_URL = 'http://api.greenhouses-iot.com:8000';

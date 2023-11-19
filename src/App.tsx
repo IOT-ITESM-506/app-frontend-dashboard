@@ -6,9 +6,17 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 
 import { CssBaseline } from '@mui/material';
 import ThemeProvider from './theme/ThemeProvider';
+import { useEffect } from 'react';
 
 function App() {
     const content = useRoutes(router);
+
+    useEffect(() => {
+        const { pathname } = window.location;
+        if (pathname === '/') {
+            window.location.href = '/auth/signin';
+        }
+    },[])
 
     return (
         <ThemeProvider>
