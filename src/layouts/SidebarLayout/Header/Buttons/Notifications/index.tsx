@@ -47,7 +47,6 @@ type AlertType = {
 };
 
 const alertTypes: AlertType = {
-    'HT': 'High Temperature',
     'LL': 'Low Luminosity',
     'HM': 'High Humidity',
     'LM': 'Low Humidity',
@@ -66,8 +65,6 @@ function HeaderNotifications() {
     const { alerts, greenhouses } = useContext(AuthContext);
     const ref = useRef<any>(null);
     const [isOpen, setOpen] = useState<boolean>(false);
-
-    console.log(alerts)
 
     const handleOpen = (): void => {
         setOpen(true);
