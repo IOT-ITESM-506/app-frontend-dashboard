@@ -100,7 +100,7 @@ export function AuthProvider(props: AuthProviderProps) {
         },
         getGreenhouses: async (user_id: string) => {
             try {
-                const response = await fetch(`${BACKEND_URL}/api/greenhouse/?user=${user_id}`, {
+                const response = await fetch(`${BACKEND_URL}/api/greenhouse/?search=${user_id}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -155,12 +155,13 @@ export function AuthProvider(props: AuthProviderProps) {
             }
         },
         registerGreenhouse: async (data: any) => {
+            console.log(data)
+
             try {
                 const response = await fetch(`${BACKEND_URL}/api/greenhouse/`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
-                        'Authorization': `Bearer ${authTokens.access}`,
                     },
                     body: JSON.stringify({
                         "name": data.name,
@@ -173,6 +174,7 @@ export function AuthProvider(props: AuthProviderProps) {
                         "user": data.user_id
                     }),
                 });
+                console.log(response)
 
                 if (!response.ok) {
                     throw new Error("Network response was not ok");

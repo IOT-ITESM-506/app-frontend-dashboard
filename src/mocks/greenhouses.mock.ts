@@ -25,7 +25,6 @@ const mockGreenhouses: IGreenhouse[] = [
 
 const mockRecords: IRecord[] = [
     {
-        temperature: 22,
         humidity: 55,
         luminosity: 1000,
         CO2_level: 350,
@@ -37,7 +36,6 @@ const mockRecords: IRecord[] = [
         sensor_record_circuit_id: 'f47ac10b-58cc-4372-a567-0e02b2c3d479',
     },
     {
-        temperature: 28,
         humidity: 65,
         luminosity: 1200,
         CO2_level: 450,
@@ -49,7 +47,6 @@ const mockRecords: IRecord[] = [
         sensor_record_circuit_id: '123e4567-e89b-12d3-a456-42661417400',
     },
     {
-        temperature: 28,
         humidity: 65,
         luminosity: 1200,
         CO2_level: 450,

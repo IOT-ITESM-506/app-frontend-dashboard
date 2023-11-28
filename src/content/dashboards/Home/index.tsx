@@ -22,7 +22,7 @@ function DashboardHome() {
         if (user) {
             getGreenhouses(user.id)
                 .then((result) => {
-                    console.log(result);
+                    
                 });
         }
     }, [user]);

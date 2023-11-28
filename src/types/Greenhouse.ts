@@ -1,5 +1,4 @@
 interface IRecord  {
-    temperature: number;
     humidity: number;
     luminosity: number;
     CO2_level: number;

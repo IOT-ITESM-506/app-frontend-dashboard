@@ -196,7 +196,7 @@ const SignupForm: React.FC = () => {
 
                         <div style={{ marginTop: '16px'}}>
                             <p>¿Do you have an account?</p>
-                            <RouterLink to='/auth/signin'>Sing in here</RouterLink>
+                            <RouterLink to='/auth/signin'>Sign in here</RouterLink>
                         </div>
 
                         <div style={{ marginTop: '16px', display: 'flex', justifyContent: 'space-around' }}>

@@ -63,7 +63,6 @@ function Row(props: { row: ReturnType<typeof createData> }) {
                                 <TableHead>
                                     <TableRow>
                                         <TableCell>Timestamp</TableCell>
-                                        <TableCell>Temperature</TableCell>
                                         <TableCell>Humidity</TableCell>
                                         <TableCell>Luminosity</TableCell>
                                     </TableRow>
@@ -72,7 +71,6 @@ function Row(props: { row: ReturnType<typeof createData> }) {
                                     {row.sensor_records.map((record: any) => (
                                         <TableRow key={record.timestamp}>
                                             <TableCell>{record.timestamp}</TableCell>
-                                            <TableCell>{record.temperature}</TableCell>
                                             <TableCell>{record.humidity}</TableCell>
                                             <TableCell>{record.luminosity}</TableCell>
                                         </TableRow>
