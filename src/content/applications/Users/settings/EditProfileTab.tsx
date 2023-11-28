@@ -18,8 +18,6 @@ import { AuthContext } from 'src/contexts/AuthContext';
 function EditProfileTab() {
     const { user } = useContext(AuthContext);
 
-    console.log(user)
-
     return (
         <Grid container spacing={3}>
             <Grid item xs={12}>
