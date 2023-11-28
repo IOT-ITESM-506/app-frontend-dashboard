@@ -108,7 +108,7 @@ const SignInForm: React.FC = () => {
                         </Button>
 
                         <div style={{ marginTop: '16px'}}>
-                            <p>¿Dont have an account?</p>
+                            <p>Don't have an account?</p>
                             <RouterLink to="/auth/signup/" style={{ textDecoration: 'underlined'}}>Register here</RouterLink>
                         </div>
 

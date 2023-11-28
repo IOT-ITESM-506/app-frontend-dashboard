@@ -14,104 +14,104 @@ import { Link as RouterLink } from 'react-router-dom';
 import { AuthContext } from 'src/contexts/AuthContext';
 
 interface FormData {
-  email: string;
-  first_name: string;
-  last_name: string;
-  password: string;
+    email: string;
+    first_name: string;
+    last_name: string;
+    password: string;
 }
 
 const SignupForm: React.FC = () => {
-  const authContext = useContext(AuthContext);
+    const authContext = useContext(AuthContext);
 
-  const [confirmPassword, setConfirmPassword] = useState<string>('');
+    const [confirmPassword, setConfirmPassword] = useState<string>('');
 
-  const [formData, setFormData] = useState<FormData>({
-    email: '',
-    first_name: '',
-    last_name: '',
-    password: '',
-  });
-
-  interface FormErrors {
-    email?: string;
-    first_name?: string;
-    last_name?: string;
-    password?: string;
-    confirmPassword?: string;
-  }
-
-  const [formErrors, setFormErrors] = useState<FormErrors>({});
-  const [successMessage, setSuccessMessage] = useState('');
-  const [rememberSession, setRememberSession] = useState(false);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
+    const [formData, setFormData] = useState<FormData>({
+        email: '',
+        first_name: '',
+        last_name: '',
+        password: '',
     });
 
-    setFormErrors({
-      ...formErrors,
-      [e.target.name]: '',
-    });
-
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const errors: FormErrors = {};
-    if (!formData.email.trim()) {
-      errors.email = 'Email is required';
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      errors.email = 'Invalid email format';
-    }
-    if (!formData.first_name.trim()) {
-      errors.first_name = 'First Name is required';
-    }
-    if (!formData.last_name.trim()) {
-      errors.last_name = 'Last Name is required';
-    }
-    if (!formData.password.trim()) {
-      errors.password = 'Password is required';
-    } else if (formData.password.length < 8) {
-      errors.password = 'Password must be at least 8 characters long';
+    interface FormErrors {
+        email?: string;
+        first_name?: string;
+        last_name?: string;
+        password?: string;
+        confirmPassword?: string;
     }
 
-    // Validar que las contraseñas coincidan
-    if (formData.password !== confirmPassword) {
-      errors.confirmPassword = 'Passwords do not match';
-    }
+    const [formErrors, setFormErrors] = useState<FormErrors>({});
+    const [successMessage, setSuccessMessage] = useState('');
+    const [rememberSession, setRememberSession] = useState(false);
 
-    if (Object.keys(errors).length > 0) {
-      setFormErrors(errors);
-    } else {
-      setSuccessMessage('Registration successful!');
-      try {
-        const response: any = await authContext.registerUser(formData);
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value,
+        });
 
-        if (response.ok) {
-          const login_response = await authContext.onLogin(
-            formData.email,
-            formData.password
-          );
-          console.log(login_response);
+        setFormErrors({
+            ...formErrors,
+            [e.target.name]: '',
+        });
+
+    };
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        const errors: FormErrors = {};
+        if (!formData.email.trim()) {
+            errors.email = 'Email is required';
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+            errors.email = 'Invalid email format';
         }
-      } catch (error) {
-        console.error('Error during registration:', error);
-      }
-    }
-  };
+        if (!formData.first_name.trim()) {
+            errors.first_name = 'First Name is required';
+        }
+        if (!formData.last_name.trim()) {
+            errors.last_name = 'Last Name is required';
+        }
+        if (!formData.password.trim()) {
+            errors.password = 'Password is required';
+        } else if (formData.password.length < 8) {
+            errors.password = 'Password must be at least 8 characters long';
+        }
 
-  const handleConfirmPasswordChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setConfirmPassword(e.target.value);
-    setFormErrors({
-      ...formErrors,
-      confirmPassword: '',
-    });
-  };
+        // Validar que las contraseñas coincidan
+        if (formData.password !== confirmPassword) {
+            errors.confirmPassword = 'Passwords do not match';
+        }
+
+        if (Object.keys(errors).length > 0) {
+            setFormErrors(errors);
+        } else {
+            setSuccessMessage('Registration successful!');
+            try {
+                const response: any = await authContext.registerUser(formData);
+
+                if (response.ok) {
+                    const login_response = await authContext.onLogin(
+                        formData.email,
+                        formData.password
+                    );
+                    console.log(login_response);
+                }
+            } catch (error) {
+                console.error('Error during registration:', error);
+            }
+        }
+    };
+
+    const handleConfirmPasswordChange = (
+        e: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        setConfirmPassword(e.target.value);
+        setFormErrors({
+            ...formErrors,
+            confirmPassword: '',
+        });
+    };
 
 
 
@@ -130,7 +130,7 @@ const SignupForm: React.FC = () => {
                 <Grid item xs={12} md={6}>
                     <Box sx={{ display: 'flex', flexDirection: 'column', width: '300px', margin: 'auto', textAlign: 'center' }}>
                         <h1 style={{ marginBottom: '16px', fontSize: '22px' }}>Signup</h1>
-                        
+
                         <TextField
                             label="Email"
                             variant="outlined"
@@ -194,8 +194,8 @@ const SignupForm: React.FC = () => {
                             Sign Up
                         </Button>
 
-                        <div style={{ marginTop: '16px'}}>
-                            <p>¿Do you have an account?</p>
+                        <div style={{ marginTop: '16px' }}>
+                            <p>Already have an account?</p>
                             <RouterLink to='/auth/signin'>Sign in here</RouterLink>
                         </div>
 
