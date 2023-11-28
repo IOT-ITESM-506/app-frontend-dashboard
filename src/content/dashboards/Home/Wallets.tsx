@@ -15,6 +15,10 @@ import { useContext } from 'react';
 import AddTwoToneIcon from '@mui/icons-material/AddTwoTone';
 import { AuthContext } from 'src/contexts/AuthContext';
 import { IGreenhouse } from 'src/types/Greenhouse';
+import { useState } from 'react';
+
+import AddGreenhouseModal from 'src/layouts/SidebarLayout/Header/AddGreenhouseModal/AddGreenhouseModal';
+
 
 const AvatarWrapper = styled(Avatar)(
     ({ theme }) => `
@@ -79,6 +83,19 @@ const CardAddAction = styled(Card)(
 function Wallets() {
     const { greenhouses, user } = useContext(AuthContext);
 
+    // Estado para controlar la visibilidad del modal
+    const [isAddGreenhouseModalOpen, setAddGreenhouseModalOpen] = useState(false);
+
+    // Función para abrir el modal
+    const handleOpenAddGreenhouseModal = () => {
+        setAddGreenhouseModalOpen(true);
+    };
+ 
+    // Función para cerrar el modal
+    const handleCloseAddGreenhouseModal = () => {
+        setAddGreenhouseModalOpen(false);
+    };
+
     return (
         <>
             <Box
@@ -94,6 +111,7 @@ function Wallets() {
                     size="small"
                     variant="outlined"
                     startIcon={<AddTwoToneIcon fontSize="small" />}
+                    onClick={handleOpenAddGreenhouseModal}
                 >
                     Add new greenhouse
                 </Button>
@@ -139,7 +157,7 @@ function Wallets() {
                 })}
                 <Grid xs={12} sm={6} md={3} item>
                     <Tooltip arrow title="Click to add a new greenhouse.">
-                        <CardAddAction>
+                        <CardAddAction onClick={handleOpenAddGreenhouseModal}>
                             <CardActionArea
                                 sx={{
                                     px: 1
@@ -155,6 +173,11 @@ function Wallets() {
                     </Tooltip>
                 </Grid>
             </Grid>
+
+            <AddGreenhouseModal 
+                open={isAddGreenhouseModalOpen}
+                handleClose={handleCloseAddGreenhouseModal}
+            />
         </>
     );
 }

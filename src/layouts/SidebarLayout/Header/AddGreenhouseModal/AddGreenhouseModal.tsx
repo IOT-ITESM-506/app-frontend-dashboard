@@ -17,6 +17,8 @@ interface AddGreenhouseModalProps {
 const AddGreenhouseModal: React.FC<AddGreenhouseModalProps> = (props) => {
     const { registerGreenhouse, user } = useContext(AuthContext);
 
+    const [error, setError] = useState<string | null>(null);
+
     const { open, handleClose } = props;
     const [greenhouseData, setGreenhouseData] = useState({
         name: '',
@@ -38,15 +40,39 @@ const AddGreenhouseModal: React.FC<AddGreenhouseModalProps> = (props) => {
         }));
     };
 
-    const handleSubmit = async(e: React.FormEvent) => {
+    // ...
+
+    // ...
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (greenhouseData.name && greenhouseData.location && greenhouseData.size) {
+
+        // Expresión regular para validar una dirección MAC
+        const macAddressOrUuidRegex = /^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$|^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[14][0-9a-fA-F]{3}-[89aAbB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$/;
+
+        if (
+            greenhouseData.name &&
+            greenhouseData.location &&
+            greenhouseData.size &&
+            greenhouseData.microcontroller_mac_address &&
+            macAddressOrUuidRegex.test(greenhouseData.microcontroller_mac_address)
+        ) {
             const response: any = await registerGreenhouse(greenhouseData);
+
             if (response.status === 201) {
                 setIsSuccess(true);
             }
+        } else {
+            // Muestra un mensaje de error si falta algún campo obligatorio o si la dirección MAC no es válida.
+            setError('Please, ensure that the MAC addres is valid.');
         }
     };
+
+// ...
+
+
+// ...
+
 
     return (
         <Modal
@@ -116,10 +142,16 @@ const AddGreenhouseModal: React.FC<AddGreenhouseModalProps> = (props) => {
                         value={greenhouseData.microcontroller_mac_address}
                         onChange={handleChange}
                         helperText="You can find this ID on the circuit box containing all sensors."
+                        error={!!error}  // Muestra el estilo de error si hay un error.
                     />
                     {isSuccess && (
                         <Alert severity="success" sx={{ mt: 0 }}>
                             Registration completed successfully!
+                        </Alert>
+                    )}
+                    {error && (
+                        <Alert severity="error" sx={{ mt: 1 }}>
+                            {error}
                         </Alert>
                     )}
                     <Button type="submit" variant="contained" sx={{ mt: 2, backgroundColor: '#4CAF50', color: 'white' }}>

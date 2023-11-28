@@ -87,9 +87,17 @@ function Row(props: { row: ReturnType<typeof createData> }) {
     );
 }
 
-function GreenhousesInfo() {
-    const { greenhouses } = useContext(AuthContext)
- 
+
+
+function GreenhousesInfo({ selectedGreenhouse }) {
+    const { greenhouses } = useContext(AuthContext);
+  
+    // If a greenhouse is selected, filter the greenhouses array to include only the selected one
+    const filteredGreenhouses = selectedGreenhouse
+      ? greenhouses.filter((greenhouse) => greenhouse.name === selectedGreenhouse.name)
+      : greenhouses;
+
+
     return (
         <GreenCard>
             <Card>
@@ -110,7 +118,7 @@ function GreenhousesInfo() {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {greenhouses.map((greenhouse) => (
+                                    {filteredGreenhouses.map((greenhouse) => (
                                         <Row key={greenhouse.name} row={greenhouse} />
                                     ))}
                                 </TableBody>
