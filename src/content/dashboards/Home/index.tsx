@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import { Helmet } from 'react-helmet-async';
 import PageHeader from './PageHeader';
@@ -15,6 +15,8 @@ import { AuthContext } from 'src/contexts/AuthContext';
 
 function DashboardHome() {
     const { greenhouses, getGreenhouses, user } = useContext(AuthContext);
+
+    const [selectedGreenhouse, setSelectedGreenhouse] = useState(null);
 
     useEffect(() => {
         if (user) {
@@ -45,7 +47,7 @@ function DashboardHome() {
                         spacing={4}
                     >
                         <Grid item xs={12}>
-                            <GreenhousesInfo />
+                            <GreenhousesInfo selectedGreenhouse={selectedGreenhouse} />
                         </Grid>
                         <Grid item lg={8} xs={12}>
                             <Wallets />

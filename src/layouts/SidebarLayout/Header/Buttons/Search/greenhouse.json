@@ -1,0 +1,13 @@
+[
+    {
+      "id": 1,
+      "name": "Invernadero 1",
+      "greenhouse_description": "Descripción del Invernadero1"
+    },
+    {
+      "id": 2,
+      "name": "GreenHouse 2",
+      "greenhouse_description": "Descripción del Invernadero2"
+    }
+]
+  

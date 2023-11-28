@@ -11,6 +11,8 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import { IconButton } from '@mui/material';
 
+import { Link as RouterLink } from 'react-router-dom';
+
 import { FormData, FormErrors } from 'src/types/SignIn';
 import { AuthContext } from 'src/contexts/AuthContext';
 
@@ -104,6 +106,12 @@ const SignInForm: React.FC = () => {
                         <Button variant="contained" color="primary" type="submit" sx={{ marginTop: '16px' }}>
                             Sign In
                         </Button>
+
+                        <div style={{ marginTop: '16px'}}>
+                            <p>¿Dont have an account?</p>
+                            <RouterLink to="/auth/signup/" style={{ textDecoration: 'underlined'}}>Register here</RouterLink>
+                        </div>
+
                         <div style={{ marginTop: '16px', display: 'flex', justifyContent: 'space-around' }}>
                             <div>
                                 <p style={{ margin: '10px 0' }}>Or sign in with</p>
